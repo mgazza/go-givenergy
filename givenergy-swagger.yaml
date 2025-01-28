@@ -1,0 +1,4679 @@
+swagger: '2.0'
+info:
+  description: ''
+  title: GivEnergy API Documentation (v1.35.0)
+  version: 1.0.0
+host: api.givenergy.cloud
+basePath: /v1
+schemes:
+  - https
+paths:
+  /account:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                address: |-
+                  Flat 60
+                  Kyle Lights
+                company: null
+                country: UNITED_KINGDOM
+                email: kelly44@allen.co.uk
+                first_name: Anna
+                id: 2
+                name: frank28.203
+                postcode: SP1 1NE
+                role: SUPER_ENGINEER
+                standard_timezone: Europe/London
+                surname: Adams
+                telephone_number: 0738 286 7656
+                timezone: GMT
+            properties:
+              data:
+                properties:
+                  address:
+                    example: |-
+                      Flat 60
+                      Kyle Lights
+                    type: string
+                  company:
+                    example: null
+                    type: string
+                  country:
+                    example: UNITED_KINGDOM
+                    type: string
+                  email:
+                    example: kelly44@allen.co.uk
+                    type: string
+                  first_name:
+                    example: Anna
+                    type: string
+                  id:
+                    example: 2
+                    type: integer
+                  name:
+                    example: frank28.203
+                    type: string
+                  postcode:
+                    example: SP1 1NE
+                    type: string
+                  role:
+                    example: SUPER_ENGINEER
+                    type: string
+                  standard_timezone:
+                    example: Europe/London
+                    type: string
+                  surname:
+                    example: Adams
+                    type: string
+                  telephone_number:
+                    example: 0738 286 7656
+                    type: string
+                  timezone:
+                    example: GMT
+                    type: string
+                type: object
+            type: object
+      tags:
+        - Account
+      description: Retrieves your account information
+      operationId: getYourAccountInformation
+      summary: Get Your Account Information
+  /account-children:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - address: 84 Alexandra Square
+                  company: null
+                  country: UNITED_KINGDOM
+                  email: stephanie07@gmail.com
+                  first_name: Paul
+                  id: 19
+                  name: wright.dylan.123
+                  postcode: WS11 1ZY
+                  role: SUPER_ENGINEER
+                  standard_timezone: Europe/London
+                  surname: Edwards
+                  telephone_number: 04527298086
+                  timezone: GMT
+                - address: 39 Grace Ferry
+                  company: null
+                  country: UNITED_KINGDOM
+                  email: jmorgan@gmail.com
+                  first_name: Archie
+                  id: 20
+                  name: michael37.776
+                  postcode: LE4 4JR
+                  role: OWNER
+                  standard_timezone: Atlantic/Azores
+                  surname: Jones
+                  telephone_number: 0047 3552779
+                  timezone: GMT -1
+            properties:
+              data:
+                example:
+                  - address: 84 Alexandra Square
+                    company: null
+                    country: UNITED_KINGDOM
+                    email: stephanie07@gmail.com
+                    first_name: Paul
+                    id: 19
+                    name: wright.dylan.123
+                    postcode: WS11 1ZY
+                    role: SUPER_ENGINEER
+                    standard_timezone: Europe/London
+                    surname: Edwards
+                    telephone_number: 04527298086
+                    timezone: GMT
+                  - address: 39 Grace Ferry
+                    company: null
+                    country: UNITED_KINGDOM
+                    email: jmorgan@gmail.com
+                    first_name: Archie
+                    id: 20
+                    name: michael37.776
+                    postcode: LE4 4JR
+                    role: OWNER
+                    standard_timezone: Atlantic/Azores
+                    surname: Jones
+                    telephone_number: 0047 3552779
+                    timezone: GMT -1
+                items:
+                  properties:
+                    address:
+                      example: 84 Alexandra Square
+                      type: string
+                    company:
+                      example: null
+                      type: string
+                    country:
+                      example: UNITED_KINGDOM
+                      type: string
+                    email:
+                      example: stephanie07@gmail.com
+                      type: string
+                    first_name:
+                      example: Paul
+                      type: string
+                    id:
+                      example: 19
+                      type: integer
+                    name:
+                      example: wright.dylan.123
+                      type: string
+                    postcode:
+                      example: WS11 1ZY
+                      type: string
+                    role:
+                      example: SUPER_ENGINEER
+                      type: string
+                    standard_timezone:
+                      example: Europe/London
+                      type: string
+                    surname:
+                      example: Edwards
+                      type: string
+                    telephone_number:
+                      example: 04527298086
+                      type: string
+                    timezone:
+                      example: GMT
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Account
+      description: Retrieves a list of accounts that your account has access to
+      operationId: getYourAccountChildrenInformation
+      summary: Get Your Account Children Information
+  '/account-children/{user_id}':
+    parameters:
+      - description: The ID of the user.
+        in: path
+        name: user_id
+        required: true
+        type: string
+        x-example: '1234'
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - address: 80 Collins Land
+                  company: null
+                  country: UNITED_KINGDOM
+                  email: jackson.amy@owen.com
+                  first_name: Jessica
+                  id: 21
+                  name: rose.phoebe.616
+                  postcode: MK9 2AD
+                  role: OWNER
+                  standard_timezone: Europe/London
+                  surname: King
+                  telephone_number: +44(0)316836121
+                  timezone: GMT
+                - address: 33 Sean Valley
+                  company: null
+                  country: UNITED_KINGDOM
+                  email: wilkinson.zach@smith.info
+                  first_name: Isabelle
+                  id: 22
+                  name: molly.watson.814
+                  postcode: TW15 3EQ
+                  role: OWNER
+                  standard_timezone: Asia/Qostanay
+                  surname: Williams
+                  telephone_number: 0975301722
+                  timezone: GMT +6
+            properties:
+              data:
+                example:
+                  - address: 80 Collins Land
+                    company: null
+                    country: UNITED_KINGDOM
+                    email: jackson.amy@owen.com
+                    first_name: Jessica
+                    id: 21
+                    name: rose.phoebe.616
+                    postcode: MK9 2AD
+                    role: OWNER
+                    standard_timezone: Europe/London
+                    surname: King
+                    telephone_number: +44(0)316836121
+                    timezone: GMT
+                  - address: 33 Sean Valley
+                    company: null
+                    country: UNITED_KINGDOM
+                    email: wilkinson.zach@smith.info
+                    first_name: Isabelle
+                    id: 22
+                    name: molly.watson.814
+                    postcode: TW15 3EQ
+                    role: OWNER
+                    standard_timezone: Asia/Qostanay
+                    surname: Williams
+                    telephone_number: 0975301722
+                    timezone: GMT +6
+                items:
+                  properties:
+                    address:
+                      example: 80 Collins Land
+                      type: string
+                    company:
+                      example: null
+                      type: string
+                    country:
+                      example: UNITED_KINGDOM
+                      type: string
+                    email:
+                      example: jackson.amy@owen.com
+                      type: string
+                    first_name:
+                      example: Jessica
+                      type: string
+                    id:
+                      example: 21
+                      type: integer
+                    name:
+                      example: rose.phoebe.616
+                      type: string
+                    postcode:
+                      example: MK9 2AD
+                      type: string
+                    role:
+                      example: OWNER
+                      type: string
+                    standard_timezone:
+                      example: Europe/London
+                      type: string
+                    surname:
+                      example: King
+                      type: string
+                    telephone_number:
+                      example: +44(0)316836121
+                      type: string
+                    timezone:
+                      example: GMT
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Account
+      description: Retrieves a list of accounts that the specified account has access to
+      operationId: getAccountChildrenInformationByID
+      summary: Get Account Children Information by ID
+  '/account/search/{user_username}':
+    parameters:
+      - description: The username of the user.
+        in: path
+        name: user_username
+        required: true
+        type: string
+        x-example: qkunze
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                address: |-
+                  Flat 31
+                  King Lake
+                company: null
+                country: UNITED_KINGDOM
+                email: noah.phillips@rogers.biz
+                first_name: Jack
+                id: 18
+                name: lmartin.14
+                postcode: AB11 5QE
+                role: ENGINEER
+                standard_timezone: Europe/London
+                surname: Palmer
+                telephone_number: (0064) 295 7686
+                timezone: GMT
+            properties:
+              data:
+                properties:
+                  address:
+                    example: |-
+                      Flat 31
+                      King Lake
+                    type: string
+                  company:
+                    example: null
+                    type: string
+                  country:
+                    example: UNITED_KINGDOM
+                    type: string
+                  email:
+                    example: noah.phillips@rogers.biz
+                    type: string
+                  first_name:
+                    example: Jack
+                    type: string
+                  id:
+                    example: 18
+                    type: integer
+                  name:
+                    example: lmartin.14
+                    type: string
+                  postcode:
+                    example: AB11 5QE
+                    type: string
+                  role:
+                    example: ENGINEER
+                    type: string
+                  standard_timezone:
+                    example: Europe/London
+                    type: string
+                  surname:
+                    example: Palmer
+                    type: string
+                  telephone_number:
+                    example: (0064) 295 7686
+                    type: string
+                  timezone:
+                    example: GMT
+                    type: string
+                type: object
+            type: object
+      tags:
+        - Account
+      description: Retrieves the information of a specific account by its username
+      operationId: getAccountInformationByUsername
+      summary: Get Account Information by Username
+  '/account/{user_id}':
+    parameters:
+      - description: The ID of the user.
+        in: path
+        name: user_id
+        required: true
+        type: string
+        x-example: '1234'
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                address: 84 John Lake
+                company: null
+                country: UNITED_KINGDOM
+                email: wright.dylan@clark.net
+                first_name: Amy
+                id: 3
+                name: patel.joshua.941
+                postcode: AB22 8ZW
+                role: ENGINEER
+                standard_timezone: Europe/London
+                surname: Owen
+                telephone_number: +44(0)0083 429653
+                timezone: GMT
+            properties:
+              data:
+                properties:
+                  address:
+                    example: 84 John Lake
+                    type: string
+                  company:
+                    example: null
+                    type: string
+                  country:
+                    example: UNITED_KINGDOM
+                    type: string
+                  email:
+                    example: wright.dylan@clark.net
+                    type: string
+                  first_name:
+                    example: Amy
+                    type: string
+                  id:
+                    example: 3
+                    type: integer
+                  name:
+                    example: patel.joshua.941
+                    type: string
+                  postcode:
+                    example: AB22 8ZW
+                    type: string
+                  role:
+                    example: ENGINEER
+                    type: string
+                  standard_timezone:
+                    example: Europe/London
+                    type: string
+                  surname:
+                    example: Owen
+                    type: string
+                  telephone_number:
+                    example: +44(0)0083 429653
+                    type: string
+                  timezone:
+                    example: GMT
+                    type: string
+                type: object
+            type: object
+      tags:
+        - Account
+      description: Retrieves the information of a specific account by its ID
+      operationId: getAccountInformationByID
+      summary: Get Account Information by ID
+  '/account/{user_username}/devices':
+    parameters:
+      - description: The username of the user.
+        in: path
+        name: user_username
+        required: true
+        type: string
+        x-example: qkunze
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - commission_date: '1997-09-14T05:09:06Z'
+                  firmware_version: null
+                  inverter:
+                    info:
+                      battery:
+                        depth_of_discharge: 1
+                        nominal_capacity: 0
+                        nominal_voltage: 0
+                      battery_type: LITHIUM
+                      max_charge_rate: 0
+                      model: AIO-HY-10.0
+                    commission_date: '1982-10-16T09:49:22Z'
+                    connections:
+                      batteries: []
+                    firmware_version:
+                      ARM: null
+                      DSP: null
+                    flags:
+                      - full-power-discharge-in-eco-mode
+                    last_online: '2009-07-24T08:35:05Z'
+                    last_updated: '1979-07-13T19:10:18Z'
+                    serial: IO2342Y115
+                    status: ERROR
+                    warranty:
+                      expiry_date: '1987-10-16T09:49:22Z'
+                      type: Standard Legacy
+                  serial_number: GH9813D969
+                  site_id: 1
+                  type: GPRS
+                - commission_date: '1976-12-13T07:02:03Z'
+                  firmware_version: null
+                  inverter:
+                    info:
+                      battery:
+                        depth_of_discharge: 1
+                        nominal_capacity: 200
+                        nominal_voltage: 51.2
+                      battery_type: LEAD_ACID
+                      max_charge_rate: 2560
+                      model: GIV-HY-7.0-AU
+                    commission_date: '1991-02-25T01:10:33Z'
+                    connections:
+                      batteries: []
+                    firmware_version:
+                      ARM: null
+                      DSP: null
+                    flags:
+                      - full-power-discharge-in-eco-mode
+                    last_online: '2007-10-07T00:24:51Z'
+                    last_updated: '2022-12-29T11:57:02Z'
+                    serial: SR8550Q546
+                    status: ERROR
+                    warranty:
+                      expiry_date: '1996-02-25T01:10:33Z'
+                      type: Standard Legacy
+                  serial_number: TN7575W487
+                  site_id: 4
+                  type: WIFI
+            properties:
+              data:
+                example:
+                  - commission_date: '1997-09-14T05:09:06Z'
+                    firmware_version: null
+                    inverter:
+                      info:
+                        battery:
+                          depth_of_discharge: 1
+                          nominal_capacity: 0
+                          nominal_voltage: 0
+                        battery_type: LITHIUM
+                        max_charge_rate: 0
+                        model: AIO-HY-10.0
+                      commission_date: '1982-10-16T09:49:22Z'
+                      connections:
+                        batteries: []
+                      firmware_version:
+                        ARM: null
+                        DSP: null
+                      flags:
+                        - full-power-discharge-in-eco-mode
+                      last_online: '2009-07-24T08:35:05Z'
+                      last_updated: '1979-07-13T19:10:18Z'
+                      serial: IO2342Y115
+                      status: ERROR
+                      warranty:
+                        expiry_date: '1987-10-16T09:49:22Z'
+                        type: Standard Legacy
+                    serial_number: GH9813D969
+                    site_id: 1
+                    type: GPRS
+                  - commission_date: '1976-12-13T07:02:03Z'
+                    firmware_version: null
+                    inverter:
+                      info:
+                        battery:
+                          depth_of_discharge: 1
+                          nominal_capacity: 200
+                          nominal_voltage: 51.2
+                        battery_type: LEAD_ACID
+                        max_charge_rate: 2560
+                        model: GIV-HY-7.0-AU
+                      commission_date: '1991-02-25T01:10:33Z'
+                      connections:
+                        batteries: []
+                      firmware_version:
+                        ARM: null
+                        DSP: null
+                      flags:
+                        - full-power-discharge-in-eco-mode
+                      last_online: '2007-10-07T00:24:51Z'
+                      last_updated: '2022-12-29T11:57:02Z'
+                      serial: SR8550Q546
+                      status: ERROR
+                      warranty:
+                        expiry_date: '1996-02-25T01:10:33Z'
+                        type: Standard Legacy
+                    serial_number: TN7575W487
+                    site_id: 4
+                    type: WIFI
+                items:
+                  properties:
+                    commission_date:
+                      example: '1997-09-14T05:09:06Z'
+                      type: string
+                    firmware_version:
+                      example: null
+                      type: string
+                    inverter:
+                      properties:
+                        info:
+                          properties:
+                            battery:
+                              properties:
+                                depth_of_discharge:
+                                  example: 1
+                                  type: integer
+                                nominal_capacity:
+                                  example: 0
+                                  type: integer
+                                nominal_voltage:
+                                  example: 0
+                                  type: integer
+                              type: object
+                            battery_type:
+                              example: LITHIUM
+                              type: string
+                            max_charge_rate:
+                              example: 0
+                              type: integer
+                            model:
+                              example: AIO-HY-10.0
+                              type: string
+                          type: object
+                        commission_date:
+                          example: '1982-10-16T09:49:22Z'
+                          type: string
+                        connections:
+                          properties:
+                            batteries:
+                              items:
+                                type: object
+                              example: []
+                              type: array
+                          type: object
+                        firmware_version:
+                          properties:
+                            ARM:
+                              example: null
+                              type: string
+                            DSP:
+                              example: null
+                              type: string
+                          type: object
+                        flags:
+                          example:
+                            - full-power-discharge-in-eco-mode
+                          items:
+                            type: string
+                          type: array
+                        last_online:
+                          example: '2009-07-24T08:35:05Z'
+                          type: string
+                        last_updated:
+                          example: '1979-07-13T19:10:18Z'
+                          type: string
+                        serial:
+                          example: IO2342Y115
+                          type: string
+                        status:
+                          example: ERROR
+                          type: string
+                        warranty:
+                          properties:
+                            expiry_date:
+                              example: '1987-10-16T09:49:22Z'
+                              type: string
+                            type:
+                              example: Standard Legacy
+                              type: string
+                          type: object
+                      type: object
+                    serial_number:
+                      example: GH9813D969
+                      type: string
+                    site_id:
+                      example: 1
+                      type: integer
+                    type:
+                      example: GPRS
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Account
+      description: Retrieves a list of dongles for an account by its ID
+      operationId: getAccountDonglesByID
+      summary: Get Account Dongles by ID
+  /communication-device:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - commission_date: '2021-01-01T00:00:00Z'
+                  inverter:
+                    info:
+                      battery:
+                        nominal_capacity: 110
+                        nominal_voltage: 51.2
+                      battery_type: LITHIUM
+                      max_charge_rate: 2560
+                      model: GIV-AC-3.0
+                    commission_date: '2021-01-01T00:00:00Z'
+                    connections:
+                      batteries:
+                        - capacity:
+                            design: 110
+                            full: 110
+                          cell_count: 16
+                          firmware_version: '1035'
+                          has_usb: true
+                          module_number: 1
+                          nominal_voltage: 51.2
+                          serial: BB2345G123
+                      meters:
+                        - address: 1
+                          baud_rate: 9600
+                          hardware_version: 1000
+                          manufacturer_code: '0000'
+                          serial_number: 212345678
+                          software_version: 1000
+                          type_code: 1500
+                    firmware_version:
+                      ARM: 420
+                      DSP: 426
+                    flags: []
+                    last_online: '2023-01-01T00:00:00Z'
+                    last_updated: '2023-01-01T00:00:00Z'
+                    serial: CE2345G123
+                    status: WAITING
+                    warranty:
+                      expiry_date: '2033-01-01T00:00:00Z'
+                      type: Standard
+                  serial_number: WF2345G123
+                  type: WIFI
+            properties:
+              data:
+                example:
+                  - commission_date: '2021-01-01T00:00:00Z'
+                    inverter:
+                      info:
+                        battery:
+                          nominal_capacity: 110
+                          nominal_voltage: 51.2
+                        battery_type: LITHIUM
+                        max_charge_rate: 2560
+                        model: GIV-AC-3.0
+                      commission_date: '2021-01-01T00:00:00Z'
+                      connections:
+                        batteries:
+                          - capacity:
+                              design: 110
+                              full: 110
+                            cell_count: 16
+                            firmware_version: '1035'
+                            has_usb: true
+                            module_number: 1
+                            nominal_voltage: 51.2
+                            serial: BB2345G123
+                        meters:
+                          - address: 1
+                            baud_rate: 9600
+                            hardware_version: 1000
+                            manufacturer_code: '0000'
+                            serial_number: 212345678
+                            software_version: 1000
+                            type_code: 1500
+                      firmware_version:
+                        ARM: 420
+                        DSP: 426
+                      flags: []
+                      last_online: '2023-01-01T00:00:00Z'
+                      last_updated: '2023-01-01T00:00:00Z'
+                      serial: CE2345G123
+                      status: WAITING
+                      warranty:
+                        expiry_date: '2033-01-01T00:00:00Z'
+                        type: Standard
+                    serial_number: WF2345G123
+                    type: WIFI
+                items:
+                  properties:
+                    commission_date:
+                      example: '2021-01-01T00:00:00Z'
+                      type: string
+                    inverter:
+                      properties:
+                        info:
+                          properties:
+                            battery:
+                              properties:
+                                nominal_capacity:
+                                  example: 110
+                                  type: integer
+                                nominal_voltage:
+                                  example: 51.2
+                                  type: number
+                              type: object
+                            battery_type:
+                              example: LITHIUM
+                              type: string
+                            max_charge_rate:
+                              example: 2560
+                              type: integer
+                            model:
+                              example: GIV-AC-3.0
+                              type: string
+                          type: object
+                        commission_date:
+                          example: '2021-01-01T00:00:00Z'
+                          type: string
+                        connections:
+                          properties:
+                            batteries:
+                              example:
+                                - capacity:
+                                    design: 110
+                                    full: 110
+                                  cell_count: 16
+                                  firmware_version: '1035'
+                                  has_usb: true
+                                  module_number: 1
+                                  nominal_voltage: 51.2
+                                  serial: BB2345G123
+                              items:
+                                properties:
+                                  capacity:
+                                    properties:
+                                      design:
+                                        example: 110
+                                        type: integer
+                                      full:
+                                        example: 110
+                                        type: integer
+                                    type: object
+                                  cell_count:
+                                    example: 16
+                                    type: integer
+                                  firmware_version:
+                                    example: '1035'
+                                    type: string
+                                  has_usb:
+                                    example: true
+                                    type: boolean
+                                  module_number:
+                                    example: 1
+                                    type: integer
+                                  nominal_voltage:
+                                    example: 51.2
+                                    type: number
+                                  serial:
+                                    example: BB2345G123
+                                    type: string
+                                type: object
+                              type: array
+                            meters:
+                              example:
+                                - address: 1
+                                  baud_rate: 9600
+                                  hardware_version: 1000
+                                  manufacturer_code: '0000'
+                                  serial_number: 212345678
+                                  software_version: 1000
+                                  type_code: 1500
+                              items:
+                                properties:
+                                  address:
+                                    example: 1
+                                    type: integer
+                                  baud_rate:
+                                    example: 9600
+                                    type: integer
+                                  hardware_version:
+                                    example: 1000
+                                    type: integer
+                                  manufacturer_code:
+                                    example: '0000'
+                                    type: string
+                                  serial_number:
+                                    example: 212345678
+                                    type: integer
+                                  software_version:
+                                    example: 1000
+                                    type: integer
+                                  type_code:
+                                    example: 1500
+                                    type: integer
+                                type: object
+                              type: array
+                          type: object
+                        firmware_version:
+                          properties:
+                            ARM:
+                              example: 420
+                              type: integer
+                            DSP:
+                              example: 426
+                              type: integer
+                          type: object
+                        flags:
+                          items:
+                            type: object
+                          example: []
+                          type: array
+                        last_online:
+                          example: '2023-01-01T00:00:00Z'
+                          type: string
+                        last_updated:
+                          example: '2023-01-01T00:00:00Z'
+                          type: string
+                        serial:
+                          example: CE2345G123
+                          type: string
+                        status:
+                          example: WAITING
+                          type: string
+                        warranty:
+                          properties:
+                            expiry_date:
+                              example: '2033-01-01T00:00:00Z'
+                              type: string
+                            type:
+                              example: Standard
+                              type: string
+                          type: object
+                      type: object
+                    serial_number:
+                      example: WF2345G123
+                      type: string
+                    type:
+                      example: WIFI
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Communication Device
+      description: View a collection of communication devices you have access to
+      operationId: getYourCommunicationDevices
+      summary: Get Your Communication Devices
+  '/communication-device/{communicationDevice_serial_number}':
+    parameters:
+      - description: The serial number of the communicationDevice.
+        in: path
+        name: communicationDevice_serial_number
+        required: true
+        type: string
+        x-example: consequatur
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                commission_date: '2021-01-01T00:00:00Z'
+                inverter:
+                  info:
+                    battery:
+                      nominal_capacity: 110
+                      nominal_voltage: 51.2
+                    battery_type: LITHIUM
+                    max_charge_rate: 2560
+                    model: GIV-AC-3.0
+                  commission_date: '2021-01-01T00:00:00Z'
+                  connections:
+                    batteries:
+                      - capacity:
+                          design: 110
+                          full: 110
+                        cell_count: 16
+                        firmware_version: '1035'
+                        has_usb: true
+                        module_number: 1
+                        nominal_voltage: 51.2
+                        serial: BB2345G123
+                    meters:
+                      - address: 1
+                        baud_rate: 9600
+                        hardware_version: 1000
+                        manufacturer_code: '0000'
+                        serial_number: 212345678
+                        software_version: 1000
+                        type_code: 1500
+                  firmware_version:
+                    ARM: 420
+                    DSP: 426
+                  flags: []
+                  last_online: '2023-01-01T00:00:00Z'
+                  last_updated: '2023-01-01T00:00:00Z'
+                  serial: CE2345G123
+                  status: WAITING
+                  warranty:
+                    expiry_date: '2033-01-01T00:00:00Z'
+                    type: Standard
+                serial_number: WF2345G123
+                type: WIFI
+            properties:
+              data:
+                properties:
+                  commission_date:
+                    example: '2021-01-01T00:00:00Z'
+                    type: string
+                  inverter:
+                    properties:
+                      info:
+                        properties:
+                          battery:
+                            properties:
+                              nominal_capacity:
+                                example: 110
+                                type: integer
+                              nominal_voltage:
+                                example: 51.2
+                                type: number
+                            type: object
+                          battery_type:
+                            example: LITHIUM
+                            type: string
+                          max_charge_rate:
+                            example: 2560
+                            type: integer
+                          model:
+                            example: GIV-AC-3.0
+                            type: string
+                        type: object
+                      commission_date:
+                        example: '2021-01-01T00:00:00Z'
+                        type: string
+                      connections:
+                        properties:
+                          batteries:
+                            example:
+                              - capacity:
+                                  design: 110
+                                  full: 110
+                                cell_count: 16
+                                firmware_version: '1035'
+                                has_usb: true
+                                module_number: 1
+                                nominal_voltage: 51.2
+                                serial: BB2345G123
+                            items:
+                              properties:
+                                capacity:
+                                  properties:
+                                    design:
+                                      example: 110
+                                      type: integer
+                                    full:
+                                      example: 110
+                                      type: integer
+                                  type: object
+                                cell_count:
+                                  example: 16
+                                  type: integer
+                                firmware_version:
+                                  example: '1035'
+                                  type: string
+                                has_usb:
+                                  example: true
+                                  type: boolean
+                                module_number:
+                                  example: 1
+                                  type: integer
+                                nominal_voltage:
+                                  example: 51.2
+                                  type: number
+                                serial:
+                                  example: BB2345G123
+                                  type: string
+                              type: object
+                            type: array
+                          meters:
+                            example:
+                              - address: 1
+                                baud_rate: 9600
+                                hardware_version: 1000
+                                manufacturer_code: '0000'
+                                serial_number: 212345678
+                                software_version: 1000
+                                type_code: 1500
+                            items:
+                              properties:
+                                address:
+                                  example: 1
+                                  type: integer
+                                baud_rate:
+                                  example: 9600
+                                  type: integer
+                                hardware_version:
+                                  example: 1000
+                                  type: integer
+                                manufacturer_code:
+                                  example: '0000'
+                                  type: string
+                                serial_number:
+                                  example: 212345678
+                                  type: integer
+                                software_version:
+                                  example: 1000
+                                  type: integer
+                                type_code:
+                                  example: 1500
+                                  type: integer
+                              type: object
+                            type: array
+                        type: object
+                      firmware_version:
+                        properties:
+                          ARM:
+                            example: 420
+                            type: integer
+                          DSP:
+                            example: 426
+                            type: integer
+                        type: object
+                      flags:
+                        items:
+                          type: object
+                        example: []
+                        type: array
+                      last_online:
+                        example: '2023-01-01T00:00:00Z'
+                        type: string
+                      last_updated:
+                        example: '2023-01-01T00:00:00Z'
+                        type: string
+                      serial:
+                        example: CE2345G123
+                        type: string
+                      status:
+                        example: WAITING
+                        type: string
+                      warranty:
+                        properties:
+                          expiry_date:
+                            example: '2033-01-01T00:00:00Z'
+                            type: string
+                          type:
+                            example: Standard
+                            type: string
+                        type: object
+                    type: object
+                  serial_number:
+                    example: WF2345G123
+                    type: string
+                  type:
+                    example: WIFI
+                    type: string
+                type: object
+            type: object
+      tags:
+        - Communication Device
+      description: Get a communication device's information by serial number
+      operationId: getCommunicationDeviceInformationBySerialNumber
+      summary: Get Communication Device Information by Serial Number
+  '/ems/{inverter_serial_number}/system-data/latest':
+    parameters:
+      - description: Optional parameter. The serial number of the EMS
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                battery_power: 9214
+                battery_wh_remaining: 58276
+                calculated_load_power: 15168
+                car_power: -27828
+                error_code: 40330
+                grid_power: 16772
+                inverters:
+                  - active_power: -8597
+                    number: 1
+                    serial_number: il6029p206
+                    soc: 88
+                    status: 4
+                    temperature: 3.2
+                  - active_power: -2221
+                    number: 2
+                    serial_number: nl3168l361
+                    soc: 79
+                    status: 4
+                    temperature: 10.3
+                  - active_power: 24191
+                    number: 3
+                    serial_number: uy0262d251
+                    soc: 43
+                    status: 2
+                    temperature: 28.4
+                  - active_power: null
+                    number: 4
+                    serial_number: null
+                    soc: null
+                    status: 0
+                    temperature: null
+                measured_load_power: 19053
+                meters:
+                  - active_power: null
+                    number: 1
+                    status: 0
+                    type: 0
+                  - active_power: null
+                    number: 2
+                    status: 2
+                    type: 1
+                  - active_power: null
+                    number: 3
+                    status: 0
+                    type: 3
+                  - active_power: null
+                    number: 4
+                    status: 2
+                    type: 2
+                  - active_power: null
+                    number: 5
+                    status: 0
+                    type: 0
+                  - active_power: null
+                    number: 6
+                    status: 0
+                    type: 0
+                  - active_power: null
+                    number: 7
+                    status: 0
+                    type: 0
+                  - active_power: null
+                    number: 8
+                    status: 0
+                    type: 0
+                status: 3
+                time: null
+                total_generation: 8035
+                warning_code: 48384
+            properties:
+              data:
+                properties:
+                  battery_power:
+                    example: 9214
+                    type: integer
+                  battery_wh_remaining:
+                    example: 58276
+                    type: integer
+                  calculated_load_power:
+                    example: 15168
+                    type: integer
+                  car_power:
+                    example: -27828
+                    type: integer
+                  error_code:
+                    example: 40330
+                    type: integer
+                  grid_power:
+                    example: 16772
+                    type: integer
+                  inverters:
+                    example:
+                      - active_power: -8597
+                        number: 1
+                        serial_number: il6029p206
+                        soc: 88
+                        status: 4
+                        temperature: 3.2
+                      - active_power: -2221
+                        number: 2
+                        serial_number: nl3168l361
+                        soc: 79
+                        status: 4
+                        temperature: 10.3
+                      - active_power: 24191
+                        number: 3
+                        serial_number: uy0262d251
+                        soc: 43
+                        status: 2
+                        temperature: 28.4
+                      - active_power: null
+                        number: 4
+                        serial_number: null
+                        soc: null
+                        status: 0
+                        temperature: null
+                    items:
+                      properties:
+                        active_power:
+                          example: -8597
+                          type: integer
+                        number:
+                          example: 1
+                          type: integer
+                        serial_number:
+                          example: il6029p206
+                          type: string
+                        soc:
+                          example: 88
+                          type: integer
+                        status:
+                          example: 4
+                          type: integer
+                        temperature:
+                          example: 3.2
+                          type: number
+                      type: object
+                    type: array
+                  measured_load_power:
+                    example: 19053
+                    type: integer
+                  meters:
+                    example:
+                      - active_power: null
+                        number: 1
+                        status: 0
+                        type: 0
+                      - active_power: null
+                        number: 2
+                        status: 2
+                        type: 1
+                      - active_power: null
+                        number: 3
+                        status: 0
+                        type: 3
+                      - active_power: null
+                        number: 4
+                        status: 2
+                        type: 2
+                      - active_power: null
+                        number: 5
+                        status: 0
+                        type: 0
+                      - active_power: null
+                        number: 6
+                        status: 0
+                        type: 0
+                      - active_power: null
+                        number: 7
+                        status: 0
+                        type: 0
+                      - active_power: null
+                        number: 8
+                        status: 0
+                        type: 0
+                    items:
+                      properties:
+                        active_power:
+                          example: null
+                          type: string
+                        number:
+                          example: 1
+                          type: integer
+                        status:
+                          example: 0
+                          type: integer
+                        type:
+                          example: 0
+                          type: integer
+                      type: object
+                    type: array
+                  status:
+                    example: 3
+                    type: integer
+                  time:
+                    example: null
+                    type: string
+                  total_generation:
+                    example: 8035
+                    type: integer
+                  warning_code:
+                    example: 48384
+                    type: integer
+                type: object
+            type: object
+      tags:
+        - EMS Data
+      description: <aside class="notice">This will only work with Plant EMS</aside>
+      operationId: getLatestEMSSystemData
+      summary: Get Latest EMS System Data
+  /ev-charger:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - alias: Garage
+                  online: false
+                  serial_number: 02622517580214
+                  status: Charging
+                  type: GivEnergy
+                  uuid: b4100ebe-079d-4048-b998-48def0555967
+                  went_offline_at: null
+                - alias: EV Charger 1
+                  online: false
+                  serial_number: '23923227938057'
+                  status: Finishing
+                  type: GivEnergy
+                  uuid: 95c43bf5-03e6-415f-b667-16a188d42def
+                  went_offline_at: null
+            properties:
+              data:
+                example:
+                  - alias: Garage
+                    online: false
+                    serial_number: 02622517580214
+                    status: Charging
+                    type: GivEnergy
+                    uuid: b4100ebe-079d-4048-b998-48def0555967
+                    went_offline_at: null
+                  - alias: EV Charger 1
+                    online: false
+                    serial_number: '23923227938057'
+                    status: Finishing
+                    type: GivEnergy
+                    uuid: 95c43bf5-03e6-415f-b667-16a188d42def
+                    went_offline_at: null
+                items:
+                  properties:
+                    alias:
+                      example: Garage
+                      type: string
+                    online:
+                      example: false
+                      type: boolean
+                    serial_number:
+                      example: 02622517580214
+                      type: string
+                    status:
+                      example: Charging
+                      type: string
+                    type:
+                      example: GivEnergy
+                      type: string
+                    uuid:
+                      example: b4100ebe-079d-4048-b998-48def0555967
+                      type: string
+                    went_offline_at:
+                      example: null
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - EV Charger
+      description: Return a list of EV chargers registered to your account
+      operationId: getYourEVChargers
+      summary: Get Your EV Chargers
+  '/ev-charger/{charger_uuid}':
+    parameters:
+      - description: The UUID of the charger.
+        in: path
+        name: charger_uuid
+        required: true
+        type: string
+        x-example: 66529e01-d113-3473-8d6f-9e11e09332ea
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                alias: Garage
+                online: false
+                serial_number: '70458130637647'
+                status: Preparing
+                type: GivEnergy
+                uuid: 9b0fa358-7f85-421e-b5cb-2ee5192e4a73
+                went_offline_at: null
+            properties:
+              data:
+                properties:
+                  alias:
+                    example: Garage
+                    type: string
+                  online:
+                    example: false
+                    type: boolean
+                  serial_number:
+                    example: '70458130637647'
+                    type: string
+                  status:
+                    example: Preparing
+                    type: string
+                  type:
+                    example: GivEnergy
+                    type: string
+                  uuid:
+                    example: 9b0fa358-7f85-421e-b5cb-2ee5192e4a73
+                    type: string
+                  went_offline_at:
+                    example: null
+                    type: string
+                type: object
+            type: object
+      tags:
+        - EV Charger
+      description: Return information about a single EV charger by its UUID
+      operationId: getEVChargerByUUID
+      summary: Get EV Charger by UUID
+  '/ev-charger/{charger_uuid}/charging-sessions':
+    parameters:
+      - description: The UUID of the charger.
+        in: path
+        name: charger_uuid
+        required: true
+        type: string
+        x-example: 66529e01-d113-3473-8d6f-9e11e09332ea
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: >-
+            Must be a valid date. Must be a date before or equal to
+            <code>end_time</code>.
+          in: query
+          name: start_time
+          required: false
+          type: string
+          x-example: '2019-05-22'
+        - description: >-
+            Must be a valid date. Must be a date after or equal to
+            <code>start_time</code>.
+          in: query
+          name: end_time
+          required: false
+          type: string
+          x-example: '2106-02-22'
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - meter_start: 933.4
+                  meter_stop: null
+                  started_at: '2000-09-03T01:31:55Z'
+                  started_by: 9f42852
+                  stop_reason: null
+                  stopped_at: null
+                  stopped_by: null
+                - meter_start: 1423.7
+                  meter_stop: null
+                  started_at: '1981-03-03T20:26:34Z'
+                  started_by: 54bd6d5
+                  stop_reason: null
+                  stopped_at: null
+                  stopped_by: null
+            properties:
+              data:
+                example:
+                  - meter_start: 933.4
+                    meter_stop: null
+                    started_at: '2000-09-03T01:31:55Z'
+                    started_by: 9f42852
+                    stop_reason: null
+                    stopped_at: null
+                    stopped_by: null
+                  - meter_start: 1423.7
+                    meter_stop: null
+                    started_at: '1981-03-03T20:26:34Z'
+                    started_by: 54bd6d5
+                    stop_reason: null
+                    stopped_at: null
+                    stopped_by: null
+                items:
+                  properties:
+                    meter_start:
+                      example: 933.4
+                      type: number
+                    meter_stop:
+                      example: null
+                      type: string
+                    started_at:
+                      example: '2000-09-03T01:31:55Z'
+                      type: string
+                    started_by:
+                      example: 9f42852
+                      type: string
+                    stop_reason:
+                      example: null
+                      type: string
+                    stopped_at:
+                      example: null
+                      type: string
+                    stopped_by:
+                      example: null
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - EV Charger
+      description: Fetch a list of all charging sessions for the given EV charger
+      operationId: getChargingSessions
+      summary: Get Charging Sessions
+  '/ev-charger/{charger_uuid}/commands':
+    parameters:
+      - description: The UUID of the charger.
+        in: path
+        name: charger_uuid
+        required: true
+        type: string
+        x-example: 66529e01-d113-3473-8d6f-9e11e09332ea
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - start-charge
+                - stop-charge
+                - set-plug-and-go
+                - set-session-energy-limit
+                - set-schedule
+                - change-mode
+            properties:
+              data:
+                example:
+                  - start-charge
+                  - stop-charge
+                  - set-plug-and-go
+                  - set-session-energy-limit
+                  - set-schedule
+                  - change-mode
+                items:
+                  type: string
+                type: array
+            type: object
+      tags:
+        - EV Charger
+      description: Fetch a list of all commands that are supported for the given EV charger
+      operationId: getSupportedCommands
+      summary: Get Supported Commands
+  '/ev-charger/{charger_uuid}/commands/{command_id}':
+    parameters:
+      - description: The UUID of the charger.
+        in: path
+        name: charger_uuid
+        required: true
+        type: string
+        x-example: 66529e01-d113-3473-8d6f-9e11e09332ea
+      - description: The ID of the command.
+        in: path
+        name: command_id
+        required: true
+        type: string
+        x-example: setup-version
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                active: EcoPlus
+                available:
+                  - Eco
+                  - EcoPlus
+                  - Boost
+            properties:
+              data:
+                properties:
+                  active:
+                    example: EcoPlus
+                    type: string
+                  available:
+                    example:
+                      - Eco
+                      - EcoPlus
+                      - Boost
+                    items:
+                      type: string
+                    type: array
+                type: object
+            type: object
+      tags:
+        - EV Charger
+      description: >-
+        Fetch the current data for the given command and EV Charger
+
+
+        <aside class="notice">A 422 error will be thrown if an invalid command
+        ID is provided or if the given EV charger does not support the given
+        command</aside>
+
+
+        The below response example is for the <code>change-mode</code> command
+      operationId: getCommandData
+      summary: Get Command Data
+    post:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                code: 0
+                message: Accepted
+                success: true
+            properties:
+              data:
+                properties:
+                  code:
+                    example: 0
+                    type: integer
+                  message:
+                    example: Accepted
+                    type: string
+                  success:
+                    example: true
+                    type: boolean
+                type: object
+            type: object
+      tags:
+        - EV Charger
+      description: Send a command to an EV Charger
+      operationId: sendCommand
+      summary: Send Command
+  '/ev-charger/{charger_uuid}/meter-data':
+    parameters:
+      - description: The UUID of the charger.
+        in: path
+        name: charger_uuid
+        required: true
+        type: string
+        x-example: 66529e01-d113-3473-8d6f-9e11e09332ea
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: >-
+            The time of the earliest data point. Must be a valid date. Must be a
+            date before <code>now</code>.
+          in: query
+          name: start_time
+          required: true
+          type: string
+          x-example: '2023-06-01T00:00:00Z'
+        - description: >-
+            The time of the latest data point. Must be a valid date. Must be a
+            date after <code>start_time</code>.
+          in: query
+          name: end_time
+          required: true
+          type: string
+          x-example: '2023-06-02T00:00:00Z'
+        - collectionFormat: multi
+          description: One or more measurands to filter by.
+          in: query
+          items:
+            type: string
+          name: measurands
+          required: true
+          type: array
+          x-example:
+            - 1
+        - collectionFormat: multi
+          description: The IDs of the measuring devices to fetch data for.
+          in: query
+          items:
+            type: integer
+          name: meter_ids
+          required: true
+          type: array
+          x-example:
+            - 1
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - measurements:
+                    - measurand: 13
+                      unit: 4
+                      value: 1145
+                    - measurand: 11
+                      unit: null
+                      value: 50.2
+                    - measurand: 21
+                      unit: 11
+                      value: 230.5
+                  meter_id: 0
+                  timestamp: '2023-06-01 08:00:00'
+            properties:
+              data:
+                example:
+                  - measurements:
+                      - measurand: 13
+                        unit: 4
+                        value: 1145
+                      - measurand: 11
+                        unit: null
+                        value: 50.2
+                      - measurand: 21
+                        unit: 11
+                        value: 230.5
+                    meter_id: 0
+                    timestamp: '2023-06-01 08:00:00'
+                items:
+                  properties:
+                    measurements:
+                      example:
+                        - measurand: 13
+                          unit: 4
+                          value: 1145
+                        - measurand: 11
+                          unit: null
+                          value: 50.2
+                        - measurand: 21
+                          unit: 11
+                          value: 230.5
+                      items:
+                        properties:
+                          measurand:
+                            example: 13
+                            type: integer
+                          unit:
+                            example: 4
+                            type: integer
+                          value:
+                            example: 1145
+                            type: number
+                        type: object
+                      type: array
+                    meter_id:
+                      example: 0
+                      type: integer
+                    timestamp:
+                      example: '2023-06-01 08:00:00'
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - EV Charger
+      description: ''
+      operationId: getDataPoints
+      summary: Get Data Points
+  '/inverter/{inverter_serial_number}/data-points/{date}':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+      - description: >-
+          Optional parameter. ISO8601-date required The date to fetch the data.
+          This assumes the date at the system's local time
+        in: path
+        name: date
+        required: true
+        type: string
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - is_metered: true
+                  power:
+                    battery:
+                      percent: 79
+                      power: -2289
+                      temperature: 12
+                    consumption:
+                      power: 22636
+                    grid:
+                      current: 98.1
+                      frequency: 49.25
+                      power: 19821
+                      voltage: 128.3
+                    inverter:
+                      eps_power: 24672
+                      output_frequency: 49.69
+                      output_voltage: 144.7
+                      power: -9476
+                      temperature: 50
+                    solar:
+                      arrays:
+                        - array: 1
+                          current: 3.3
+                          power: 491
+                          voltage: 198.6
+                        - array: 2
+                          current: 10
+                          power: 2806
+                          voltage: 170.8
+                      power: 4703
+                  status: LOST
+                  time: '1997-04-14T05:24:20Z'
+                  today:
+                    ac_charge: 8021.5
+                    battery:
+                      charge: 8691.3
+                      discharge: 4350.4
+                    consumption: 5673.7
+                    grid:
+                      export: 5384.4
+                      import: 3168.4
+                    solar: 4373.9
+                  total:
+                    ac_charge: 9568.8
+                    battery:
+                      charge: 1034.1
+                      discharge: 1034.1
+                    consumption: 7757.1
+                    grid:
+                      export: 7045.8
+                      import: 4625.8
+                    solar: 4353.3
+                - is_metered: true
+                  power:
+                    battery:
+                      percent: 46
+                      power: 2048
+                      temperature: -25.9
+                    consumption:
+                      power: 46950
+                    grid:
+                      current: 98.9
+                      frequency: 50.32
+                      power: 11311
+                      voltage: 199.5
+                    inverter:
+                      eps_power: 64789
+                      output_frequency: 49.01
+                      output_voltage: 144.2
+                      power: -1516
+                      temperature: 28.7
+                    solar:
+                      arrays:
+                        - array: 1
+                          current: 4.2
+                          power: 1656
+                          voltage: 398.9
+                        - array: 2
+                          current: 14.3
+                          power: 3881
+                          voltage: 449.8
+                      power: 4065
+                  status: WARNING
+                  time: '1971-09-15T21:08:01Z'
+                  today:
+                    ac_charge: 6372.2
+                    battery:
+                      charge: 300.3
+                      discharge: 9962.2
+                    consumption: 5934.1
+                    grid:
+                      export: 9864.4
+                      import: 5510.6
+                    solar: 1149.4
+                  total:
+                    ac_charge: 3627.8
+                    battery:
+                      charge: 3135.4
+                      discharge: 3135.4
+                    consumption: 2605.4
+                    grid:
+                      export: 7876.6
+                      import: 4190
+                    solar: 4178.8
+            properties:
+              data:
+                example:
+                  - is_metered: true
+                    power:
+                      battery:
+                        percent: 79
+                        power: -2289
+                        temperature: 12
+                      consumption:
+                        power: 22636
+                      grid:
+                        current: 98.1
+                        frequency: 49.25
+                        power: 19821
+                        voltage: 128.3
+                      inverter:
+                        eps_power: 24672
+                        output_frequency: 49.69
+                        output_voltage: 144.7
+                        power: -9476
+                        temperature: 50
+                      solar:
+                        arrays:
+                          - array: 1
+                            current: 3.3
+                            power: 491
+                            voltage: 198.6
+                          - array: 2
+                            current: 10
+                            power: 2806
+                            voltage: 170.8
+                        power: 4703
+                    status: LOST
+                    time: '1997-04-14T05:24:20Z'
+                    today:
+                      ac_charge: 8021.5
+                      battery:
+                        charge: 8691.3
+                        discharge: 4350.4
+                      consumption: 5673.7
+                      grid:
+                        export: 5384.4
+                        import: 3168.4
+                      solar: 4373.9
+                    total:
+                      ac_charge: 9568.8
+                      battery:
+                        charge: 1034.1
+                        discharge: 1034.1
+                      consumption: 7757.1
+                      grid:
+                        export: 7045.8
+                        import: 4625.8
+                      solar: 4353.3
+                  - is_metered: true
+                    power:
+                      battery:
+                        percent: 46
+                        power: 2048
+                        temperature: -25.9
+                      consumption:
+                        power: 46950
+                      grid:
+                        current: 98.9
+                        frequency: 50.32
+                        power: 11311
+                        voltage: 199.5
+                      inverter:
+                        eps_power: 64789
+                        output_frequency: 49.01
+                        output_voltage: 144.2
+                        power: -1516
+                        temperature: 28.7
+                      solar:
+                        arrays:
+                          - array: 1
+                            current: 4.2
+                            power: 1656
+                            voltage: 398.9
+                          - array: 2
+                            current: 14.3
+                            power: 3881
+                            voltage: 449.8
+                        power: 4065
+                    status: WARNING
+                    time: '1971-09-15T21:08:01Z'
+                    today:
+                      ac_charge: 6372.2
+                      battery:
+                        charge: 300.3
+                        discharge: 9962.2
+                      consumption: 5934.1
+                      grid:
+                        export: 9864.4
+                        import: 5510.6
+                      solar: 1149.4
+                    total:
+                      ac_charge: 3627.8
+                      battery:
+                        charge: 3135.4
+                        discharge: 3135.4
+                      consumption: 2605.4
+                      grid:
+                        export: 7876.6
+                        import: 4190
+                      solar: 4178.8
+                items:
+                  properties:
+                    is_metered:
+                      example: true
+                      type: boolean
+                    power:
+                      properties:
+                        battery:
+                          properties:
+                            percent:
+                              example: 79
+                              type: integer
+                            power:
+                              example: -2289
+                              type: integer
+                            temperature:
+                              example: 12
+                              type: number
+                          type: object
+                        consumption:
+                          properties:
+                            power:
+                              example: 22636
+                              type: integer
+                          type: object
+                        grid:
+                          properties:
+                            current:
+                              example: 98.1
+                              type: number
+                            frequency:
+                              example: 49.25
+                              type: number
+                            power:
+                              example: 19821
+                              type: integer
+                            voltage:
+                              example: 128.3
+                              type: number
+                          type: object
+                        inverter:
+                          properties:
+                            eps_power:
+                              example: 24672
+                              type: integer
+                            output_frequency:
+                              example: 49.69
+                              type: number
+                            output_voltage:
+                              example: 144.7
+                              type: number
+                            power:
+                              example: -9476
+                              type: integer
+                            temperature:
+                              example: 50
+                              type: number
+                          type: object
+                        solar:
+                          properties:
+                            arrays:
+                              example:
+                                - array: 1
+                                  current: 3.3
+                                  power: 491
+                                  voltage: 198.6
+                                - array: 2
+                                  current: 10
+                                  power: 2806
+                                  voltage: 170.8
+                              items:
+                                properties:
+                                  array:
+                                    example: 1
+                                    type: integer
+                                  current:
+                                    example: 3.3
+                                    type: number
+                                  power:
+                                    example: 491
+                                    type: integer
+                                  voltage:
+                                    example: 198.6
+                                    type: number
+                                type: object
+                              type: array
+                            power:
+                              example: 4703
+                              type: integer
+                          type: object
+                      type: object
+                    status:
+                      example: LOST
+                      type: string
+                    time:
+                      example: '1997-04-14T05:24:20Z'
+                      type: string
+                      format: datetime
+                    today:
+                      properties:
+                        ac_charge:
+                          example: 8021.5
+                          type: number
+                        battery:
+                          properties:
+                            charge:
+                              example: 8691.3
+                              type: number
+                            discharge:
+                              example: 4350.4
+                              type: number
+                          type: object
+                        consumption:
+                          example: 5673.7
+                          type: number
+                        grid:
+                          properties:
+                            export:
+                              example: 5384.4
+                              type: number
+                            import:
+                              example: 3168.4
+                              type: number
+                          type: object
+                        solar:
+                          example: 4373.9
+                          type: number
+                      type: object
+                    total:
+                      properties:
+                        ac_charge:
+                          example: 9568.8
+                          type: number
+                        battery:
+                          properties:
+                            charge:
+                              example: 1034.1
+                              type: number
+                            discharge:
+                              example: 1034.1
+                              type: number
+                          type: object
+                        consumption:
+                          example: 7757.1
+                          type: number
+                        grid:
+                          properties:
+                            export:
+                              example: 7045.8
+                              type: number
+                            import:
+                              example: 4625.8
+                              type: number
+                          type: object
+                        solar:
+                          example: 4353.3
+                          type: number
+                      type: object
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Inverter Data
+      description: Displays the entire data packet set from the chosen date
+      operationId: getDataPoints2
+      summary: Get Data Points
+  '/inverter/{inverter_serial_number}/debug/transparent/send':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              hex:
+                description: The hex command to send to the inverter
+                example: consequatur
+                type: string
+            required:
+              - hex
+            type: object
+      responses:
+        '200':
+          description: failure
+          schema:
+            example:
+              code: -1
+              success: false
+            properties:
+              code:
+                example: -1
+                type: integer
+              success:
+                example: false
+                type: boolean
+            type: object
+      tags:
+        - Inverter Control
+      description: >-
+        Transparently sends the given hexadecimal string to the inverter
+
+
+        <aside class="notice">
+            A response code will only be returned if the command was not successful
+        </aside>
+
+
+        See [Remote Control Codes](#remote-control-codes) for all possible
+        response codes
+      operationId: sendCustomCommandToInverter
+      summary: Send Custom Command to Inverter
+  '/inverter/{inverter_serial_number}/energy-flows':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    post:
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              end_time:
+                description: The end time of the query. Based on the inverter's local time
+                example: '2022-01-01'
+                type: string
+              grouping:
+                description: >-
+                  The way in which to group the data. See the above table for a
+                  complete list of grouping IDs
+                example: 0
+                type: integer
+              start_time:
+                description: >-
+                  The start time of the query. Based on the inverter's local
+                  time
+                example: '2022-01-01'
+                type: string
+              types:
+                description: >-
+                  An array of type IDs. See the above table for a complete list
+                  of type IDs. Leave blank to fetch all types
+                example:
+                  - 0
+                  - 1
+                  - 2
+                  - 5
+                items:
+                  type: integer
+                type: array
+            required:
+              - start_time
+              - end_time
+              - grouping
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example: |-
+              {
+                   "data": [
+                       "start_time": "2022-01-01 00:00",
+                       "end_time": "2022-01-01 00:30",
+                       "data": [
+                           "0": 4.5,
+                           "1": 8.3,
+                           "2": 1.2,
+                           "5": 7.3
+                       ],
+                       ...
+                   ]
+               }
+            type: string
+      tags:
+        - Energy Flow Data
+      description: Fetches the energy flow data for a given inverter between 2 times
+      operationId: getEnergyFlowData
+      summary: Get Energy Flow Data
+  '/inverter/{inverter_serial_number}/events':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: >-
+            Whether 'cleared' events should be included with the data. Default
+            is false
+          in: query
+          name: cleared
+          required: false
+          type: boolean
+          x-example: false
+        - description: Must be a valid date. Must be a date before <code>tomorrow</code>.
+          in: query
+          name: start
+          required: false
+          type: string
+          x-example: '2019-05-23'
+        - description: Must be a valid date. Must be a date after <code>start</code>.
+          in: query
+          name: end
+          required: false
+          type: string
+          x-example: '2106-02-22'
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - end_time: null
+                  event: Parallel communication failure
+                  start_time: '2004-04-04T04:33:02Z'
+                - end_time: null
+                  event: Low battery voltage
+                  start_time: '1975-09-01T05:45:22Z'
+            properties:
+              data:
+                example:
+                  - end_time: null
+                    event: Parallel communication failure
+                    start_time: '2004-04-04T04:33:02Z'
+                  - end_time: null
+                    event: Low battery voltage
+                    start_time: '1975-09-01T05:45:22Z'
+                items:
+                  properties:
+                    end_time:
+                      example: null
+                      type: string
+                    event:
+                      example: Parallel communication failure
+                      type: string
+                    start_time:
+                      example: '2004-04-04T04:33:02Z'
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Inverter Data
+      description: >-
+        Retrieves a list of faults that were triggered from the inverter and
+        when they were cleared
+      operationId: getEvents
+      summary: Get Events
+  '/inverter/{inverter_serial_number}/meter-data/latest':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                is_metered: true
+                time: '1992-09-29T14:37:47Z'
+                today:
+                  ac_charge: 30996.9
+                  battery:
+                    charge: 91852.3
+                    discharge: 65419.6
+                  consumption: 938.6
+                  grid:
+                    export: 4294.6
+                    import: 9880.9
+                  solar: 5690.3
+                total:
+                  ac_charge: 26925.1
+                  battery:
+                    charge: 8763.7
+                    discharge: 8763.7
+                  consumption: 66779
+                  grid:
+                    export: 5659
+                    import: 184.9
+                  solar: 57462.4
+            properties:
+              data:
+                properties:
+                  is_metered:
+                    example: true
+                    type: boolean
+                  time:
+                    example: '1992-09-29T14:37:47Z'
+                    type: string
+                  today:
+                    properties:
+                      ac_charge:
+                        example: 30996.9
+                        type: number
+                      battery:
+                        properties:
+                          charge:
+                            example: 91852.3
+                            type: number
+                          discharge:
+                            example: 65419.6
+                            type: number
+                        type: object
+                      consumption:
+                        example: 938.6
+                        type: number
+                      grid:
+                        properties:
+                          export:
+                            example: 4294.6
+                            type: number
+                          import:
+                            example: 9880.9
+                            type: number
+                        type: object
+                      solar:
+                        example: 5690.3
+                        type: number
+                    type: object
+                  total:
+                    properties:
+                      ac_charge:
+                        example: 26925.1
+                        type: number
+                      battery:
+                        properties:
+                          charge:
+                            example: 8763.7
+                            type: number
+                          discharge:
+                            example: 8763.7
+                            type: number
+                        type: object
+                      consumption:
+                        example: 66779
+                        type: integer
+                      grid:
+                        properties:
+                          export:
+                            example: 5659
+                            type: integer
+                          import:
+                            example: 184.9
+                            type: number
+                        type: object
+                      solar:
+                        example: 57462.4
+                        type: number
+                    type: object
+                type: object
+            type: object
+      tags:
+        - Inverter Data
+      description: Retrieves the latest energy data from the inverter
+      operationId: getLatestEnergyData
+      summary: Get Latest Energy Data
+  '/inverter/{inverter_serial_number}/meter/data':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    get:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              address:
+                description: Must be between 1 and 8.
+                example: 2
+                type: integer
+              end_time:
+                description: Must be a date after or equal to <code>start_time</code>.
+                example: '2106-02-22'
+                type: string
+              start_time:
+                description: Must be a date before or equal to <code>end_time</code>.
+                example: '2019-05-22'
+                type: string
+            required:
+              - address
+              - start_time
+              - end_time
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - active_energy_net: 940.5
+                  active_energy_total: 503.1
+                  active_power_1: 463.8
+                  active_power_2: -698.7
+                  active_power_3: 440
+                  active_power_total: 595.9
+                  apparent_power_1: -760.4
+                  apparent_power_2: -767.7
+                  apparent_power_3: 289.5
+                  apparent_power_total: -974.2
+                  current_1: 6120.5
+                  current_2: 2171.8
+                  current_3: 7712.8
+                  current_ln: 7799
+                  current_total: 1357.8
+                  export_active_energy: 98.3
+                  export_reactive_energy: 561.2
+                  frequency: 49.57
+                  import_active_energy: 202.9
+                  import_reactive_energy: 626.5
+                  power_factor_1: 0.4955
+                  power_factor_2: 0.5087
+                  power_factor_3: 0.314
+                  power_factor_total: 0.331
+                  reactive_power_1: -595.2
+                  reactive_power_2: 630.3
+                  reactive_power_3: 916.3
+                  reactive_power_total: 673.8
+                  time: '1997-05-28T05:10:15.000000Z'
+                  voltage_1: 186.6
+                  voltage_2: 56
+                  voltage_3: 167.1
+                - active_energy_net: 761.6
+                  active_energy_total: 989
+                  active_power_1: -262.9
+                  active_power_2: -461.5
+                  active_power_3: -895.7
+                  active_power_total: -715.1
+                  apparent_power_1: -910.4
+                  apparent_power_2: -938
+                  apparent_power_3: 242.4
+                  apparent_power_total: 335.6
+                  current_1: 5568.4
+                  current_2: 5689.8
+                  current_3: 9184.3
+                  current_ln: 6541.3
+                  current_total: 6704.7
+                  export_active_energy: 782.5
+                  export_reactive_energy: 376.8
+                  frequency: 49.66
+                  import_active_energy: 776.2
+                  import_reactive_energy: 813
+                  power_factor_1: 0.6648
+                  power_factor_2: 0.7496
+                  power_factor_3: 0.2609
+                  power_factor_total: 0.8952
+                  reactive_power_1: 599.9
+                  reactive_power_2: 104.9
+                  reactive_power_3: 699.9
+                  reactive_power_total: 464.4
+                  time: '1975-03-03T16:33:06.000000Z'
+                  voltage_1: 197.3
+                  voltage_2: 5.5
+                  voltage_3: 169.8
+            properties:
+              data:
+                example:
+                  - active_energy_net: 940.5
+                    active_energy_total: 503.1
+                    active_power_1: 463.8
+                    active_power_2: -698.7
+                    active_power_3: 440
+                    active_power_total: 595.9
+                    apparent_power_1: -760.4
+                    apparent_power_2: -767.7
+                    apparent_power_3: 289.5
+                    apparent_power_total: -974.2
+                    current_1: 6120.5
+                    current_2: 2171.8
+                    current_3: 7712.8
+                    current_ln: 7799
+                    current_total: 1357.8
+                    export_active_energy: 98.3
+                    export_reactive_energy: 561.2
+                    frequency: 49.57
+                    import_active_energy: 202.9
+                    import_reactive_energy: 626.5
+                    power_factor_1: 0.4955
+                    power_factor_2: 0.5087
+                    power_factor_3: 0.314
+                    power_factor_total: 0.331
+                    reactive_power_1: -595.2
+                    reactive_power_2: 630.3
+                    reactive_power_3: 916.3
+                    reactive_power_total: 673.8
+                    time: '1997-05-28T05:10:15.000000Z'
+                    voltage_1: 186.6
+                    voltage_2: 56
+                    voltage_3: 167.1
+                  - active_energy_net: 761.6
+                    active_energy_total: 989
+                    active_power_1: -262.9
+                    active_power_2: -461.5
+                    active_power_3: -895.7
+                    active_power_total: -715.1
+                    apparent_power_1: -910.4
+                    apparent_power_2: -938
+                    apparent_power_3: 242.4
+                    apparent_power_total: 335.6
+                    current_1: 5568.4
+                    current_2: 5689.8
+                    current_3: 9184.3
+                    current_ln: 6541.3
+                    current_total: 6704.7
+                    export_active_energy: 782.5
+                    export_reactive_energy: 376.8
+                    frequency: 49.66
+                    import_active_energy: 776.2
+                    import_reactive_energy: 813
+                    power_factor_1: 0.6648
+                    power_factor_2: 0.7496
+                    power_factor_3: 0.2609
+                    power_factor_total: 0.8952
+                    reactive_power_1: 599.9
+                    reactive_power_2: 104.9
+                    reactive_power_3: 699.9
+                    reactive_power_total: 464.4
+                    time: '1975-03-03T16:33:06.000000Z'
+                    voltage_1: 197.3
+                    voltage_2: 5.5
+                    voltage_3: 169.8
+                items:
+                  properties:
+                    active_energy_net:
+                      example: 940.5
+                      type: number
+                    active_energy_total:
+                      example: 503.1
+                      type: number
+                    active_power_1:
+                      example: 463.8
+                      type: number
+                    active_power_2:
+                      example: -698.7
+                      type: number
+                    active_power_3:
+                      example: 440
+                      type: integer
+                    active_power_total:
+                      example: 595.9
+                      type: number
+                    apparent_power_1:
+                      example: -760.4
+                      type: number
+                    apparent_power_2:
+                      example: -767.7
+                      type: number
+                    apparent_power_3:
+                      example: 289.5
+                      type: number
+                    apparent_power_total:
+                      example: -974.2
+                      type: number
+                    current_1:
+                      example: 6120.5
+                      type: number
+                    current_2:
+                      example: 2171.8
+                      type: number
+                    current_3:
+                      example: 7712.8
+                      type: number
+                    current_ln:
+                      example: 7799
+                      type: integer
+                    current_total:
+                      example: 1357.8
+                      type: number
+                    export_active_energy:
+                      example: 98.3
+                      type: number
+                    export_reactive_energy:
+                      example: 561.2
+                      type: number
+                    frequency:
+                      example: 49.57
+                      type: number
+                    import_active_energy:
+                      example: 202.9
+                      type: number
+                    import_reactive_energy:
+                      example: 626.5
+                      type: number
+                    power_factor_1:
+                      example: 0.4955
+                      type: number
+                    power_factor_2:
+                      example: 0.5087
+                      type: number
+                    power_factor_3:
+                      example: 0.314
+                      type: number
+                    power_factor_total:
+                      example: 0.331
+                      type: number
+                    reactive_power_1:
+                      example: -595.2
+                      type: number
+                    reactive_power_2:
+                      example: 630.3
+                      type: number
+                    reactive_power_3:
+                      example: 916.3
+                      type: number
+                    reactive_power_total:
+                      example: 673.8
+                      type: number
+                    time:
+                      example: '1997-05-28T05:10:15.000000Z'
+                      type: string
+                    voltage_1:
+                      example: 186.6
+                      type: number
+                    voltage_2:
+                      example: 56
+                      type: integer
+                    voltage_3:
+                      example: 167.1
+                      type: number
+                  type: object
+                type: array
+            type: object
+        '404':
+          description: ''
+          schema:
+            example:
+              message: Meter not found
+            properties:
+              message:
+                example: Meter not found
+                type: string
+            type: object
+      tags:
+        - Meter
+      description: >-
+        Retrieve all historic meter data between the given start and end date
+        for the given inverter and meter
+      operationId: getHistoricMeterData
+      summary: Get Historic Meter Data
+  '/inverter/{inverter_serial_number}/presets':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    get:
+      produces:
+        - text/plain
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example: |-
+              {
+                   "data": [
+                       {
+                           "id": 0,
+                           "identifier": "eco-mode",
+                           "name": "Eco",
+                           "description": "This mode will dynamically charge and discharge your batteries to minimise your import from the grid",
+                           "parameters": {
+                               "enabled": {
+                                   "description": "Enable or disable the preset",
+                                   "validation": [
+                                       "required",
+                                       "boolean"
+                                   ]
+                               }
+                           }
+                       },
+                       ...
+                   ]
+              }
+            type: string
+      tags:
+        - Inverter Control
+      description: Retrieves a list of available setting presets for a given inverter
+      operationId: getSettingPresets
+      summary: Get Setting Presets
+  '/inverter/{inverter_serial_number}/presets/{id}':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+      - description: >-
+          The preset ID (`identifier`), as returned by the API or defined in the
+          documentation
+        in: path
+        name: id
+        required: true
+        type: string
+        x-example: consequatur
+    get:
+      produces:
+        - text/plain
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example: |-
+              {
+                  // timed-charge, 1 slot
+                  "data": {
+                       "enabled": true,
+                       "slots": [
+                           {
+                               "start_time": "00:00",
+                               "end_time": "06:00",
+                               "percent_limit": 50
+                           }
+                       ]
+                   }
+              }
+            type: string
+      tags:
+        - Inverter Control
+      description: >-
+        Get a preset's current values
+
+
+        The returned data will be formatted in the same way as the preset's
+        parameters. Examples can be found on the right
+
+
+        <aside class="notice">If a particular value is not yet known as it
+        hasn't been set on or read from the inverter,
+
+        an assumed default value or null may be returned, depending on the
+        preset and value</aside>
+      operationId: getPresetValues
+      summary: Get Preset Values
+  '/inverter/{inverter_serial_number}/request-data':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: failure
+          schema:
+            example:
+              success: false
+            properties:
+              success:
+                example: false
+                type: boolean
+            type: object
+      tags:
+        - Inverter Data
+      description: |-
+        Sends a command to the inverter to force it to persist a data point
+
+        <aside class="notice">
+            A successful response is returned if the command was sent successfully but does not necessarily mean that the inverter has persisted a data point.
+            Whether the inverter has persisted a data point can be confirmed by checking the inverter's last update time
+        </aside>
+      operationId: requestInverterData
+      summary: Request Inverter Data
+  '/inverter/{inverter_serial_number}/settings':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - id: 266
+                  name: DC Discharge 3 End Time
+                  validation: >-
+                    Value format should be HH:mm. Use correct time range for
+                    hour and minutes
+                  validation_rules:
+                    - 'date_format:H:i'
+            properties:
+              data:
+                example:
+                  - id: 266
+                    name: DC Discharge 3 End Time
+                    validation: >-
+                      Value format should be HH:mm. Use correct time range for
+                      hour and minutes
+                    validation_rules:
+                      - 'date_format:H:i'
+                items:
+                  properties:
+                    id:
+                      example: 266
+                      type: integer
+                    name:
+                      example: DC Discharge 3 End Time
+                      type: string
+                    validation:
+                      example: >-
+                        Value format should be HH:mm. Use correct time range for
+                        hour and minutes
+                      type: string
+                    validation_rules:
+                      example:
+                        - 'date_format:H:i'
+                      items:
+                        type: string
+                      type: array
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Inverter Control
+      description: Returns a set of inverter settings available to your account
+      operationId: getSettingsList
+      summary: Get Settings List
+  '/inverter/{inverter_serial_number}/settings/{setting_id}/read':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+      - description: The ID of the setting.
+        in: path
+        name: setting_id
+        required: true
+        type: integer
+        x-example: 17
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: false
+          schema:
+            properties:
+              context:
+                description: >-
+                  Additional context to record against this command. Appears on
+                  the remote control history in 'via'
+                example: consequatur
+                type: string
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                value: 3261.3
+            properties:
+              data:
+                properties:
+                  value:
+                    example: 3261.3
+                    type: number
+                type: object
+            type: object
+      tags:
+        - Inverter Control
+      description: Read a specific setting on the inverter
+      operationId: readSetting
+      summary: Read Setting
+  '/inverter/{inverter_serial_number}/settings/{setting_id}/write':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+      - description: The ID of the setting.
+        in: path
+        name: setting_id
+        required: true
+        type: integer
+        x-example: 17
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              context:
+                description: >-
+                  Additional context to record against this command. Appears on
+                  the remote control history in 'via'
+                example: consequatur
+                type: string
+              value:
+                description: The value of the setting
+                example: consequatur
+                type: object
+            required:
+              - value
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                message: Read Successfully
+                success: true
+                value: '32:613'
+            properties:
+              data:
+                properties:
+                  message:
+                    example: Read Successfully
+                    type: string
+                  success:
+                    example: true
+                    type: boolean
+                  value:
+                    example: '32:613'
+                    type: string
+                type: object
+            type: object
+      tags:
+        - Inverter Control
+      description: Write a value to the setting on the inverter
+      operationId: modifySetting
+      summary: Modify Setting
+  '/inverter/{inverter_serial_number}/system-data/latest':
+    parameters:
+      - description: The serial number of the inverter.
+        in: path
+        name: inverter_serial_number
+        required: true
+        type: string
+        x-example: CE1234G567
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                battery:
+                  percent: 83
+                  power: -2484
+                  temperature: 85
+                consumption: 38674
+                grid:
+                  current: -4688.5
+                  frequency: 259.5
+                  power: -3270
+                  voltage: 2155.3
+                inverter:
+                  eps_power: 224
+                  output_frequency: 49.28
+                  output_voltage: 222.1
+                  power: 37241
+                  temperature: 80
+                solar:
+                  arrays:
+                    - array: 1
+                      current: 918.5
+                      power: 881
+                      voltage: 369.8
+                    - array: 2
+                      current: 654.2
+                      power: 563
+                      voltage: 413.1
+                  power: 1526
+                status: Normal
+                time: '2007-01-13T05:46:09Z'
+            properties:
+              data:
+                properties:
+                  battery:
+                    properties:
+                      percent:
+                        example: 83
+                        type: integer
+                      power:
+                        example: -2484
+                        type: integer
+                      temperature:
+                        example: 85
+                        type: number
+                    type: object
+                  consumption:
+                    example: 38674
+                    type: integer
+                  grid:
+                    properties:
+                      current:
+                        example: -4688.5
+                        type: number
+                      frequency:
+                        example: 259.5
+                        type: number
+                      power:
+                        example: -3270
+                        type: integer
+                      voltage:
+                        example: 2155.3
+                        type: number
+                    type: object
+                  inverter:
+                    properties:
+                      eps_power:
+                        example: 224
+                        type: integer
+                      output_frequency:
+                        example: 49.28
+                        type: number
+                      output_voltage:
+                        example: 222.1
+                        type: number
+                      power:
+                        example: 37241
+                        type: integer
+                      temperature:
+                        example: 80
+                        type: number
+                    type: object
+                  solar:
+                    properties:
+                      arrays:
+                        example:
+                          - array: 1
+                            current: 918.5
+                            power: 881
+                            voltage: 369.8
+                          - array: 2
+                            current: 654.2
+                            power: 563
+                            voltage: 413.1
+                        items:
+                          properties:
+                            array:
+                              example: 1
+                              type: integer
+                            current:
+                              example: 918.5
+                              type: number
+                            power:
+                              example: 881
+                              type: integer
+                            voltage:
+                              example: 369.8
+                              type: number
+                          type: object
+                        type: array
+                      power:
+                        example: 1526
+                        type: integer
+                    type: object
+                  status:
+                    example: Normal
+                    type: string
+                  time:
+                    example: '2007-01-13T05:46:09Z'
+                    type: string
+                type: object
+            type: object
+      tags:
+        - Inverter Data
+      description: Retrieves the latest system data from the inverter
+      operationId: getLatestSystemData
+      summary: Get Latest System Data
+  /multi-control/read:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              inverter_serials:
+                description: >-
+                  An array of inverter serial numbers to send the command to
+                  with a maximum length of 1000
+                example:
+                  - SERIAL_1
+                  - SERIAL_2
+                items:
+                  type: string
+                type: array
+              setting_id:
+                description: The ID of the setting to modify
+                example: 17
+                type: integer
+            required:
+              - inverter_serials
+              - setting_id
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example: |-
+              {
+                   "SERIAL_1": {
+                       "response": 1,
+                   },
+                   "SERIAL_2": {
+                      "response": -2,
+                   }
+               }
+            type: string
+      tags:
+        - Inverter Control
+      description: >-
+        Read a specific setting on multiple inverters
+
+        <aside class="warning">Only attempt to read the setting for inverters
+        that you are certain exist and which you have access to.
+
+        Improper use of this endpoint may lead to restrictions being imposed on
+        your account</aside>
+      operationId: readSettingMultiple
+      summary: Read Setting (Multiple)
+  /multi-control/write:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              inverter_serials:
+                description: >-
+                  An array of inverter serial numbers to send the command to
+                  with a maximum length of 1000
+                example:
+                  - SERIAL_1
+                  - SERIAL_2
+                items:
+                  type: string
+                type: array
+              setting_id:
+                description: The ID of the setting to modify
+                example: 17
+                type: integer
+              value:
+                description: The value of the setting
+                example: '1'
+                type: object
+            required:
+              - inverter_serials
+              - setting_id
+              - value
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example: |-
+              {
+                   "SERIAL_1": {
+                       "response": 1,
+                   },
+                   "SERIAL_2": {
+                       "response": -2,
+                   }
+              }
+            type: string
+      tags:
+        - Inverter Control
+      description: >-
+        Write a value to a setting on multiple inverters
+
+        <aside class="warning">Only attempt to modify the setting for inverters
+        that you are certain exist and which you have access to.
+
+        Improper use of this endpoint may lead to restrictions being imposed on
+        your account</aside>
+      operationId: modifySettingMultiple
+      summary: Modify Setting (Multiple)
+  /notification/send:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              body:
+                description: >-
+                  Body of the notification. Must meet the API requirements for
+                  notification content. Must be at least 20 characters.
+                example: >-
+                  Here is some information about the amazing thing that has
+                  happened
+                type: string
+              icon:
+                description: >-
+                  The notification's icon. Must be a valid [material design
+                  icon](https://pictogrammers.com/library/mdi/?welcome) prefixed
+                  with `mdi-`. Must start with one of <code>mdi-</code>.
+                example: mdi-account-outline
+                type: string
+              platforms:
+                description: One or more platforms to send the notification to.
+                example:
+                  - persist
+                items:
+                  type: string
+                type: array
+              title:
+                description: >-
+                  Title of the notification. Must meet the API requirements for
+                  notification content. Must be at least 10 characters.
+                example: Something amazing has happened!
+                type: string
+            required:
+              - platforms
+              - title
+              - body
+              - icon
+            type: object
+      responses:
+        '200':
+          description: failure
+          schema:
+            example:
+              success: false
+            properties:
+              success:
+                example: false
+                type: boolean
+            type: object
+      tags:
+        - Notifications
+      description: >-
+        Sends a notification to your account on the specified platforms
+
+
+        A failure indicates that the notification could not be sent to one or
+        more of the specified platforms
+
+
+        To help prevent misuse of this endpoint, the values of `body` and
+        `title` must meet the following requirements:
+
+
+        - They must not include any email addresses
+
+        - They must not include any telephone numbers
+
+        - They must not include any URLs (with or without `http(s)://` prefix)
+
+
+        As this endpoint is used and user behaviour patterns are analyzed,
+
+        the validation rules may change over time without warning to keep users
+        safe.
+
+        If modifications to this endpoint's validation rules are made, this
+        endpoint's documentation will be updated
+
+        and details of the change will be included in the changelog found at the
+        bottom of this document
+
+
+        To help users identify the origin of notifications sent via this
+        endpoint,
+
+        a message will be included at the end of the notification body that
+        either states
+
+        the name of the third-party application that sent the notification or
+        the name of the token used, whichever is applicable
+
+
+        Users and third-party applications found to be abusing this endpoint
+        will have their API access revoked
+      operationId: sendNotification
+      summary: Send Notification
+  /site:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - account: yreynolds.814
+                  country: FAROE_IS
+                  date_created: '1988-03-24'
+                  id: 7
+                  latitude: 79.284177
+                  longitude: 1.10994
+                  name: Jeremy Hill
+                  products: []
+                  timezone: GMT
+                  type: SINGLE_PHASE
+                  tz_timezone: Europe/Astrakhan
+                - account: rlewis.7
+                  country: NIUE
+                  date_created: '2023-02-07'
+                  id: 8
+                  latitude: -77.744751
+                  longitude: -175.172025
+                  name: Riley Adams
+                  products: []
+                  timezone: GMT
+                  type: SINGLE_PHASE
+                  tz_timezone: Pacific/Honolulu
+            properties:
+              data:
+                example:
+                  - account: yreynolds.814
+                    country: FAROE_IS
+                    date_created: '1988-03-24'
+                    id: 7
+                    latitude: 79.284177
+                    longitude: 1.10994
+                    name: Jeremy Hill
+                    products: []
+                    timezone: GMT
+                    type: SINGLE_PHASE
+                    tz_timezone: Europe/Astrakhan
+                  - account: rlewis.7
+                    country: NIUE
+                    date_created: '2023-02-07'
+                    id: 8
+                    latitude: -77.744751
+                    longitude: -175.172025
+                    name: Riley Adams
+                    products: []
+                    timezone: GMT
+                    type: SINGLE_PHASE
+                    tz_timezone: Pacific/Honolulu
+                items:
+                  properties:
+                    account:
+                      example: yreynolds.814
+                      type: string
+                    country:
+                      example: FAROE_IS
+                      type: string
+                    date_created:
+                      example: '1988-03-24'
+                      type: string
+                    id:
+                      example: 7
+                      type: integer
+                    latitude:
+                      example: 79.284177
+                      type: number
+                    longitude:
+                      example: 1.10994
+                      type: number
+                    name:
+                      example: Jeremy Hill
+                      type: string
+                    products:
+                      items:
+                        type: object
+                      example: []
+                      type: array
+                    timezone:
+                      example: GMT
+                      type: string
+                    type:
+                      example: SINGLE_PHASE
+                      type: string
+                    tz_timezone:
+                      example: Europe/Astrakhan
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Site
+      description: Retrieves a list of your sites
+      operationId: getYourSites
+      summary: Get Your Sites
+  '/site/{site_plant_id}':
+    parameters:
+      - description: The ID of the site plant.
+        in: path
+        name: site_plant_id
+        required: true
+        type: integer
+        x-example: 17
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                account: luke.phillips.146
+                country: FAROE_IS
+                date_created: '1988-03-24'
+                id: 9
+                latitude: 79.284177
+                longitude: 1.10994
+                name: Jeremy Hill
+                products: []
+                timezone: GMT
+                type: SINGLE_PHASE
+                tz_timezone: Europe/Astrakhan
+            properties:
+              data:
+                properties:
+                  account:
+                    example: luke.phillips.146
+                    type: string
+                  country:
+                    example: FAROE_IS
+                    type: string
+                  date_created:
+                    example: '1988-03-24'
+                    type: string
+                  id:
+                    example: 9
+                    type: integer
+                  latitude:
+                    example: 79.284177
+                    type: number
+                  longitude:
+                    example: 1.10994
+                    type: number
+                  name:
+                    example: Jeremy Hill
+                    type: string
+                  products:
+                    items:
+                      type: object
+                    example: []
+                    type: array
+                  timezone:
+                    example: GMT
+                    type: string
+                  type:
+                    example: SINGLE_PHASE
+                    type: string
+                  tz_timezone:
+                    example: Europe/Astrakhan
+                    type: string
+                type: object
+            type: object
+      tags:
+        - Site
+      description: Gather a single site's information
+      operationId: getSingleSiteByID
+      summary: Get Single Site by ID
+  '/site/{site_plant_id}/status':
+    parameters:
+      - description: The ID of the site plant.
+        in: path
+        name: site_plant_id
+        required: true
+        type: integer
+        x-example: 17
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              status: vacant
+            properties:
+              status:
+                example: vacant
+                type: string
+            type: object
+      tags:
+        - Site
+      description: ''
+      operationId: getSiteStatus
+      summary: Get Site Status
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: false
+          schema:
+            properties:
+              status:
+                description: ''
+                example: null
+                type: string
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              success: true
+            properties:
+              success:
+                example: true
+                type: boolean
+            type: object
+      tags:
+        - Site
+      description: >-
+        Update the status of a site. Provide a status of `null` to delete the
+        status.
+
+
+        Modifying the site status will automatically perform any modifications
+        to any hardware on that site as required.
+      operationId: updateSiteStatus
+      summary: Update Site Status
+  /smart-device:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - alias: veniam
+                  other_data:
+                    graph_color: '#f0c27c'
+                    hardware_id: P
+                    local_key: J
+                  uuid: 0d8968ca-f418-4bbd-af21-2bde7613614b
+                - alias: nostrum
+                  other_data:
+                    graph_color: '#608742'
+                    hardware_id: _
+                    local_key: )
+                  uuid: d6032cf8-cbe7-4fbb-a710-c63fd9f6dae6
+            properties:
+              data:
+                example:
+                  - alias: veniam
+                    other_data:
+                      graph_color: '#f0c27c'
+                      hardware_id: P
+                      local_key: J
+                    uuid: 0d8968ca-f418-4bbd-af21-2bde7613614b
+                  - alias: nostrum
+                    other_data:
+                      graph_color: '#608742'
+                      hardware_id: _
+                      local_key: )
+                    uuid: d6032cf8-cbe7-4fbb-a710-c63fd9f6dae6
+                items:
+                  properties:
+                    alias:
+                      example: veniam
+                      type: string
+                    other_data:
+                      properties:
+                        graph_color:
+                          example: '#f0c27c'
+                          type: string
+                        hardware_id:
+                          example: P
+                          type: string
+                        local_key:
+                          example: J
+                          type: string
+                      type: object
+                    uuid:
+                      example: 0d8968ca-f418-4bbd-af21-2bde7613614b
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Smart Device
+      description: List the smart devices registered to your account
+      operationId: getYourSmartDevices
+      summary: Get Your Smart Devices
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              alias:
+                description: An alternate name for the smart device.
+                example: consequatur
+                type: string
+              manufacturer:
+                description: The name of the product's manufacturer.
+                example: consequatur
+                type: string
+              other_data:
+                description: ''
+                example: []
+                type: object
+              product_name:
+                description: The model name of the product.
+                example: consequatur
+                type: string
+              serial_number:
+                description: The serial number of the smart device.
+                example: consequatur
+                type: string
+            required:
+              - serial_number
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - alias: iste
+                  other_data:
+                    graph_color: '#22c331'
+                    hardware_id: e
+                    local_key: /
+                  uuid: 58b5215d-ef7b-47fb-8897-79da6e0cc184
+                - alias: ut
+                  other_data:
+                    graph_color: '#913ee5'
+                    hardware_id: '#'
+                    local_key: l
+                  uuid: d6353976-5898-4a54-b610-daaaa147017e
+            properties:
+              data:
+                example:
+                  - alias: iste
+                    other_data:
+                      graph_color: '#22c331'
+                      hardware_id: e
+                      local_key: /
+                    uuid: 58b5215d-ef7b-47fb-8897-79da6e0cc184
+                  - alias: ut
+                    other_data:
+                      graph_color: '#913ee5'
+                      hardware_id: '#'
+                      local_key: l
+                    uuid: d6353976-5898-4a54-b610-daaaa147017e
+                items:
+                  properties:
+                    alias:
+                      example: iste
+                      type: string
+                    other_data:
+                      properties:
+                        graph_color:
+                          example: '#22c331'
+                          type: string
+                        hardware_id:
+                          example: e
+                          type: string
+                        local_key:
+                          example: /
+                          type: string
+                      type: object
+                    uuid:
+                      example: 58b5215d-ef7b-47fb-8897-79da6e0cc184
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Smart Device
+      description: Register a new smart device to your account
+      operationId: createSmartDevice
+      summary: Create Smart Device
+  '/smart-device/{smartDevice_uuid}':
+    parameters:
+      - description: The UUID of the smartDevice.
+        in: path
+        name: smartDevice_uuid
+        required: true
+        type: string
+        x-example: 66529e01-d113-3473-8d6f-9e11e09332ea
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - alias: ipsum
+                  other_data:
+                    graph_color: '#b8e6b1'
+                    hardware_id: H
+                    local_key: 'y'
+                  uuid: 8d4277f4-ff6e-4a4c-a90e-fef022276270
+                - alias: fugit
+                  other_data:
+                    graph_color: '#7eb1cc'
+                    hardware_id: ','
+                    local_key: ^
+                  uuid: 4cce11a8-e496-43de-ac57-9fdb71044137
+            properties:
+              data:
+                example:
+                  - alias: ipsum
+                    other_data:
+                      graph_color: '#b8e6b1'
+                      hardware_id: H
+                      local_key: 'y'
+                    uuid: 8d4277f4-ff6e-4a4c-a90e-fef022276270
+                  - alias: fugit
+                    other_data:
+                      graph_color: '#7eb1cc'
+                      hardware_id: ','
+                      local_key: ^
+                    uuid: 4cce11a8-e496-43de-ac57-9fdb71044137
+                items:
+                  properties:
+                    alias:
+                      example: ipsum
+                      type: string
+                    other_data:
+                      properties:
+                        graph_color:
+                          example: '#b8e6b1'
+                          type: string
+                        hardware_id:
+                          example: H
+                          type: string
+                        local_key:
+                          example: 'y'
+                          type: string
+                      type: object
+                    uuid:
+                      example: 8d4277f4-ff6e-4a4c-a90e-fef022276270
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Smart Device
+      description: Get a smart device's information
+      operationId: getSmartDeviceByID
+      summary: Get Smart Device by ID
+  '/smart-device/{smartDevice_uuid}/data':
+    parameters:
+      - description: The UUID of the smartDevice.
+        in: path
+        name: smartDevice_uuid
+        required: true
+        type: string
+        x-example: 66529e01-d113-3473-8d6f-9e11e09332ea
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Page number to return
+          in: query
+          name: page
+          required: false
+          type: integer
+          x-example: 1
+        - description: Number of items to return in a page. Defaults to 15
+          in: query
+          name: pageSize
+          required: false
+          type: integer
+          x-example: null
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - power: 509
+                  time: '1987-04-16T18:03:05Z'
+                - power: 431
+                  time: '2016-05-03T04:07:01Z'
+            properties:
+              data:
+                example:
+                  - power: 509
+                    time: '1987-04-16T18:03:05Z'
+                  - power: 431
+                    time: '2016-05-03T04:07:01Z'
+                items:
+                  properties:
+                    power:
+                      example: 509
+                      type: integer
+                    time:
+                      example: '1987-04-16T18:03:05Z'
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Smart Device
+      description: Get a list of a smart device's data points
+      operationId: getSmartDeviceDataPointsByID
+      summary: Get Smart Device Data Points by ID
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              power:
+                description: ''
+                example: 17
+                type: integer
+              time:
+                description: The date & time that the data point was created
+                example: consequatur
+                type: string
+            required:
+              - time
+              - power
+            type: object
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - power: 622
+                  time: '1980-04-12T13:41:24Z'
+                - power: 437
+                  time: '1993-12-21T13:55:59Z'
+            properties:
+              data:
+                example:
+                  - power: 622
+                    time: '1980-04-12T13:41:24Z'
+                  - power: 437
+                    time: '1993-12-21T13:55:59Z'
+                items:
+                  properties:
+                    power:
+                      example: 622
+                      type: integer
+                    time:
+                      example: '1980-04-12T13:41:24Z'
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Smart Device
+      description: Store a data point against a smart device
+      operationId: createSmartDeviceDataPoint
+      summary: Create Smart Device Data Point
+  /sso/me/accounts:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ''
+          in: header
+          name: Authorization
+          type: string
+          x-example: 'Bearer {YOUR_API_KEY}'
+      responses:
+        '200':
+          description: ''
+          schema:
+            example:
+              data:
+                - address: 57 James Spring
+                  company: null
+                  country: UNITED_KINGDOM
+                  email: jack60@lewis.net
+                  first_name: Alexandra
+                  id: 23
+                  name: anna00.369
+                  postcode: NG5 1JR
+                  role: OWNER
+                  standard_timezone: Europe/London
+                  surname: Shaw
+                  telephone_number: 08691 273874
+                  timezone: GMT
+                - address: 9 Hall Knolls
+                  company: null
+                  country: UNITED_KINGDOM
+                  email: tim32@gmail.com
+                  first_name: Grace
+                  id: 24
+                  name: arthur94.60
+                  postcode: L38 9EB
+                  role: ADMIN
+                  standard_timezone: Asia/Yakutsk
+                  surname: Fox
+                  telephone_number: (0262) 6260924
+                  timezone: GMT +9
+            properties:
+              data:
+                example:
+                  - address: 57 James Spring
+                    company: null
+                    country: UNITED_KINGDOM
+                    email: jack60@lewis.net
+                    first_name: Alexandra
+                    id: 23
+                    name: anna00.369
+                    postcode: NG5 1JR
+                    role: OWNER
+                    standard_timezone: Europe/London
+                    surname: Shaw
+                    telephone_number: 08691 273874
+                    timezone: GMT
+                  - address: 9 Hall Knolls
+                    company: null
+                    country: UNITED_KINGDOM
+                    email: tim32@gmail.com
+                    first_name: Grace
+                    id: 24
+                    name: arthur94.60
+                    postcode: L38 9EB
+                    role: ADMIN
+                    standard_timezone: Asia/Yakutsk
+                    surname: Fox
+                    telephone_number: (0262) 6260924
+                    timezone: GMT +9
+                items:
+                  properties:
+                    address:
+                      example: 57 James Spring
+                      type: string
+                    company:
+                      example: null
+                      type: string
+                    country:
+                      example: UNITED_KINGDOM
+                      type: string
+                    email:
+                      example: jack60@lewis.net
+                      type: string
+                    first_name:
+                      example: Alexandra
+                      type: string
+                    id:
+                      example: 23
+                      type: integer
+                    name:
+                      example: anna00.369
+                      type: string
+                    postcode:
+                      example: NG5 1JR
+                      type: string
+                    role:
+                      example: OWNER
+                      type: string
+                    standard_timezone:
+                      example: Europe/London
+                      type: string
+                    surname:
+                      example: Shaw
+                      type: string
+                    telephone_number:
+                      example: 08691 273874
+                      type: string
+                    timezone:
+                      example: GMT
+                      type: string
+                  type: object
+                type: array
+            type: object
+      tags:
+        - Account
+      description: Retrieves all accounts that have been associated with your SSO identity
+      operationId: getListOfAccountsAssociatedWithYourSSOIdentity
+      summary: Get List Of Accounts Associated With Your SSO Identity
+securityDefinitions:
+  default:
+    description: ''
+    in: header
+    name: Authorization
+    type: apiKey
+security:
+  - default: []
+tags:
+  - description: ''
+    name: Account
+  - description: ''
+    name: Communication Device
+  - description: ''
+    name: EMS Data
+  - description: ''
+    name: EV Charger
+  - description: ''
+    name: Energy Flow Data
+  - description: ''
+    name: Inverter Control
+  - description: ''
+    name: Inverter Data
+  - description: ''
+    name: Meter
+  - description: ''
+    name: Notifications
+  - description: ''
+    name: Site
+  - description: ''
+    name: Smart Device
+x-components: {}
