@@ -7,6 +7,7 @@ package e_v_charger
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -31,7 +32,7 @@ func (o *SendCommandReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /ev-charger/{charger_uuid}/commands/{command_id}] sendCommand", response, response.Code())
 	}
 }
 
@@ -80,11 +81,13 @@ func (o *SendCommandOK) Code() int {
 }
 
 func (o *SendCommandOK) Error() string {
-	return fmt.Sprintf("[POST /ev-charger/{charger_uuid}/commands/{command_id}][%d] sendCommandOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ev-charger/{charger_uuid}/commands/{command_id}][%d] sendCommandOK %s", 200, payload)
 }
 
 func (o *SendCommandOK) String() string {
-	return fmt.Sprintf("[POST /ev-charger/{charger_uuid}/commands/{command_id}][%d] sendCommandOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /ev-charger/{charger_uuid}/commands/{command_id}][%d] sendCommandOK %s", 200, payload)
 }
 
 func (o *SendCommandOK) GetPayload() *SendCommandOKBody {
@@ -164,6 +167,11 @@ func (o *SendCommandOKBody) ContextValidate(ctx context.Context, formats strfmt.
 func (o *SendCommandOKBody) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Data != nil {
+
+		if swag.IsZero(o.Data) { // not required
+			return nil
+		}
+
 		if err := o.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("sendCommandOK" + "." + "data")

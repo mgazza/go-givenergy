@@ -10,17 +10,17 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/account"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/communication_device"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/e_m_s_data"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/e_v_charger"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/energy_flow_data"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/inverter_control"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/inverter_data"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/meter"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/notifications"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/site"
-	"github.com/mgazza/mgazza.github.io/go-givenergy/client/smart_device"
+	"github.com/mgazza/go-givenergy/client/account"
+	"github.com/mgazza/go-givenergy/client/communication_device"
+	"github.com/mgazza/go-givenergy/client/e_m_s_data"
+	"github.com/mgazza/go-givenergy/client/e_v_charger"
+	"github.com/mgazza/go-givenergy/client/energy_flow_data"
+	"github.com/mgazza/go-givenergy/client/inverter_control"
+	"github.com/mgazza/go-givenergy/client/inverter_data"
+	"github.com/mgazza/go-givenergy/client/meter"
+	"github.com/mgazza/go-givenergy/client/notifications"
+	"github.com/mgazza/go-givenergy/client/site"
+	"github.com/mgazza/go-givenergy/client/smart_device"
 )
 
 // Default giv energy API documentation v1350 HTTP client.

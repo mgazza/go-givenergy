@@ -7,6 +7,7 @@ package site
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -30,7 +31,7 @@ func (o *GetSiteStatusReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /site/{site_plant_id}/status] getSiteStatus", response, response.Code())
 	}
 }
 
@@ -79,11 +80,13 @@ func (o *GetSiteStatusOK) Code() int {
 }
 
 func (o *GetSiteStatusOK) Error() string {
-	return fmt.Sprintf("[GET /site/{site_plant_id}/status][%d] getSiteStatusOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /site/{site_plant_id}/status][%d] getSiteStatusOK %s", 200, payload)
 }
 
 func (o *GetSiteStatusOK) String() string {
-	return fmt.Sprintf("[GET /site/{site_plant_id}/status][%d] getSiteStatusOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /site/{site_plant_id}/status][%d] getSiteStatusOK %s", 200, payload)
 }
 
 func (o *GetSiteStatusOK) GetPayload() *GetSiteStatusOKBody {

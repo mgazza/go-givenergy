@@ -23,3 +23,9 @@ go.work.sum
 
 # env file
 .env
+
+# Ignore IDE settings
+.idea/
+
+# Ignore temporary/generated files
+semicolon_delimited_script

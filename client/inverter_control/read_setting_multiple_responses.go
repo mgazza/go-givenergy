@@ -7,6 +7,7 @@ package inverter_control
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -32,7 +33,7 @@ func (o *ReadSettingMultipleReader) ReadResponse(response runtime.ClientResponse
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /multi-control/read] readSettingMultiple", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *ReadSettingMultipleOK) Code() int {
 }
 
 func (o *ReadSettingMultipleOK) Error() string {
-	return fmt.Sprintf("[POST /multi-control/read][%d] readSettingMultipleOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /multi-control/read][%d] readSettingMultipleOK %s", 200, payload)
 }
 
 func (o *ReadSettingMultipleOK) String() string {
-	return fmt.Sprintf("[POST /multi-control/read][%d] readSettingMultipleOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /multi-control/read][%d] readSettingMultipleOK %s", 200, payload)
 }
 
 func (o *ReadSettingMultipleOK) GetPayload() string {

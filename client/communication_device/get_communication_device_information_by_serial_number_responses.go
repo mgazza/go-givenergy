@@ -7,6 +7,7 @@ package communication_device
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetCommunicationDeviceInformationBySerialNumberReader) ReadResponse(res
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /communication-device/{communicationDevice_serial_number}] getCommunicationDeviceInformationBySerialNumber", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOK) Code() int {
 }
 
 func (o *GetCommunicationDeviceInformationBySerialNumberOK) Error() string {
-	return fmt.Sprintf("[GET /communication-device/{communicationDevice_serial_number}][%d] getCommunicationDeviceInformationBySerialNumberOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /communication-device/{communicationDevice_serial_number}][%d] getCommunicationDeviceInformationBySerialNumberOK %s", 200, payload)
 }
 
 func (o *GetCommunicationDeviceInformationBySerialNumberOK) String() string {
-	return fmt.Sprintf("[GET /communication-device/{communicationDevice_serial_number}][%d] getCommunicationDeviceInformationBySerialNumberOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /communication-device/{communicationDevice_serial_number}][%d] getCommunicationDeviceInformationBySerialNumberOK %s", 200, payload)
 }
 
 func (o *GetCommunicationDeviceInformationBySerialNumberOK) GetPayload() *GetCommunicationDeviceInformationBySerialNumberOKBody {
@@ -165,6 +168,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBody) ContextValidate(
 func (o *GetCommunicationDeviceInformationBySerialNumberOKBody) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Data != nil {
+
+		if swag.IsZero(o.Data) { // not required
+			return nil
+		}
+
 		if err := o.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data")
@@ -268,6 +276,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyData) ContextValid
 func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyData) contextValidateInverter(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Inverter != nil {
+
+		if swag.IsZero(o.Inverter) { // not required
+			return nil
+		}
+
 		if err := o.Inverter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data" + "." + "inverter")
@@ -473,6 +486,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverter) Cont
 func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverter) contextValidateConnections(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Connections != nil {
+
+		if swag.IsZero(o.Connections) { // not required
+			return nil
+		}
+
 		if err := o.Connections.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data" + "." + "inverter" + "." + "connections")
@@ -489,6 +507,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverter) cont
 func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverter) contextValidateFirmwareVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.FirmwareVersion != nil {
+
+		if swag.IsZero(o.FirmwareVersion) { // not required
+			return nil
+		}
+
 		if err := o.FirmwareVersion.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data" + "." + "inverter" + "." + "firmware_version")
@@ -505,6 +528,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverter) cont
 func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverter) contextValidateInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Info != nil {
+
+		if swag.IsZero(o.Info) { // not required
+			return nil
+		}
+
 		if err := o.Info.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data" + "." + "inverter" + "." + "info")
@@ -521,6 +549,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverter) cont
 func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverter) contextValidateWarranty(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Warranty != nil {
+
+		if swag.IsZero(o.Warranty) { // not required
+			return nil
+		}
+
 		if err := o.Warranty.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data" + "." + "inverter" + "." + "warranty")
@@ -660,6 +693,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverterConnec
 	for i := 0; i < len(o.Batteries); i++ {
 
 		if o.Batteries[i] != nil {
+
+			if swag.IsZero(o.Batteries[i]) { // not required
+				return nil
+			}
+
 			if err := o.Batteries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data" + "." + "inverter" + "." + "connections" + "." + "batteries" + "." + strconv.Itoa(i))
@@ -680,6 +718,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverterConnec
 	for i := 0; i < len(o.Meters); i++ {
 
 		if o.Meters[i] != nil {
+
+			if swag.IsZero(o.Meters[i]) { // not required
+				return nil
+			}
+
 			if err := o.Meters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data" + "." + "inverter" + "." + "connections" + "." + "meters" + "." + strconv.Itoa(i))
@@ -797,6 +840,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverterConnec
 func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverterConnectionsBatteriesItems0) contextValidateCapacity(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Capacity != nil {
+
+		if swag.IsZero(o.Capacity) { // not required
+			return nil
+		}
+
 		if err := o.Capacity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("capacity")
@@ -1049,6 +1097,11 @@ func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverterInfo) 
 func (o *GetCommunicationDeviceInformationBySerialNumberOKBodyDataInverterInfo) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getCommunicationDeviceInformationBySerialNumberOK" + "." + "data" + "." + "inverter" + "." + "info" + "." + "battery")

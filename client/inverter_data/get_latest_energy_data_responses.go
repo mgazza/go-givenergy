@@ -7,6 +7,7 @@ package inverter_data
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -31,7 +32,7 @@ func (o *GetLatestEnergyDataReader) ReadResponse(response runtime.ClientResponse
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /inverter/{inverter_serial_number}/meter-data/latest] getLatestEnergyData", response, response.Code())
 	}
 }
 
@@ -80,11 +81,13 @@ func (o *GetLatestEnergyDataOK) Code() int {
 }
 
 func (o *GetLatestEnergyDataOK) Error() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter-data/latest][%d] getLatestEnergyDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter-data/latest][%d] getLatestEnergyDataOK %s", 200, payload)
 }
 
 func (o *GetLatestEnergyDataOK) String() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter-data/latest][%d] getLatestEnergyDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter-data/latest][%d] getLatestEnergyDataOK %s", 200, payload)
 }
 
 func (o *GetLatestEnergyDataOK) GetPayload() *GetLatestEnergyDataOKBody {
@@ -164,6 +167,11 @@ func (o *GetLatestEnergyDataOKBody) ContextValidate(ctx context.Context, formats
 func (o *GetLatestEnergyDataOKBody) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Data != nil {
+
+		if swag.IsZero(o.Data) { // not required
+			return nil
+		}
+
 		if err := o.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestEnergyDataOK" + "." + "data")
@@ -293,6 +301,11 @@ func (o *GetLatestEnergyDataOKBodyData) ContextValidate(ctx context.Context, for
 func (o *GetLatestEnergyDataOKBodyData) contextValidateToday(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Today != nil {
+
+		if swag.IsZero(o.Today) { // not required
+			return nil
+		}
+
 		if err := o.Today.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestEnergyDataOK" + "." + "data" + "." + "today")
@@ -309,6 +322,11 @@ func (o *GetLatestEnergyDataOKBodyData) contextValidateToday(ctx context.Context
 func (o *GetLatestEnergyDataOKBodyData) contextValidateTotal(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Total != nil {
+
+		if swag.IsZero(o.Total) { // not required
+			return nil
+		}
+
 		if err := o.Total.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestEnergyDataOK" + "." + "data" + "." + "total")
@@ -442,6 +460,11 @@ func (o *GetLatestEnergyDataOKBodyDataToday) ContextValidate(ctx context.Context
 func (o *GetLatestEnergyDataOKBodyDataToday) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestEnergyDataOK" + "." + "data" + "." + "today" + "." + "battery")
@@ -458,6 +481,11 @@ func (o *GetLatestEnergyDataOKBodyDataToday) contextValidateBattery(ctx context.
 func (o *GetLatestEnergyDataOKBodyDataToday) contextValidateGrid(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Grid != nil {
+
+		if swag.IsZero(o.Grid) { // not required
+			return nil
+		}
+
 		if err := o.Grid.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestEnergyDataOK" + "." + "data" + "." + "today" + "." + "grid")
@@ -677,6 +705,11 @@ func (o *GetLatestEnergyDataOKBodyDataTotal) ContextValidate(ctx context.Context
 func (o *GetLatestEnergyDataOKBodyDataTotal) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestEnergyDataOK" + "." + "data" + "." + "total" + "." + "battery")
@@ -693,6 +726,11 @@ func (o *GetLatestEnergyDataOKBodyDataTotal) contextValidateBattery(ctx context.
 func (o *GetLatestEnergyDataOKBodyDataTotal) contextValidateGrid(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Grid != nil {
+
+		if swag.IsZero(o.Grid) { // not required
+			return nil
+		}
+
 		if err := o.Grid.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestEnergyDataOK" + "." + "data" + "." + "total" + "." + "grid")

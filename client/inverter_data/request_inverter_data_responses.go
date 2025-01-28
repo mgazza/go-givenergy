@@ -7,6 +7,7 @@ package inverter_data
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -30,7 +31,7 @@ func (o *RequestInverterDataReader) ReadResponse(response runtime.ClientResponse
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /inverter/{inverter_serial_number}/request-data] requestInverterData", response, response.Code())
 	}
 }
 
@@ -79,11 +80,13 @@ func (o *RequestInverterDataOK) Code() int {
 }
 
 func (o *RequestInverterDataOK) Error() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/request-data][%d] requestInverterDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/request-data][%d] requestInverterDataOK %s", 200, payload)
 }
 
 func (o *RequestInverterDataOK) String() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/request-data][%d] requestInverterDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/request-data][%d] requestInverterDataOK %s", 200, payload)
 }
 
 func (o *RequestInverterDataOK) GetPayload() *RequestInverterDataOKBody {

@@ -6,6 +6,7 @@ package inverter_control
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -28,7 +29,7 @@ func (o *GetSettingPresetsReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /inverter/{inverter_serial_number}/presets] getSettingPresets", response, response.Code())
 	}
 }
 
@@ -77,11 +78,13 @@ func (o *GetSettingPresetsOK) Code() int {
 }
 
 func (o *GetSettingPresetsOK) Error() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/presets][%d] getSettingPresetsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/presets][%d] getSettingPresetsOK %s", 200, payload)
 }
 
 func (o *GetSettingPresetsOK) String() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/presets][%d] getSettingPresetsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/presets][%d] getSettingPresetsOK %s", 200, payload)
 }
 
 func (o *GetSettingPresetsOK) GetPayload() string {

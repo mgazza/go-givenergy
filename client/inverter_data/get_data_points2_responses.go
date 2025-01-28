@@ -7,6 +7,7 @@ package inverter_data
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -33,7 +34,7 @@ func (o *GetDataPoints2Reader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /inverter/{inverter_serial_number}/data-points/{date}] getDataPoints2", response, response.Code())
 	}
 }
 
@@ -82,11 +83,13 @@ func (o *GetDataPoints2OK) Code() int {
 }
 
 func (o *GetDataPoints2OK) Error() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/data-points/{date}][%d] getDataPoints2OK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/data-points/{date}][%d] getDataPoints2OK %s", 200, payload)
 }
 
 func (o *GetDataPoints2OK) String() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/data-points/{date}][%d] getDataPoints2OK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/data-points/{date}][%d] getDataPoints2OK %s", 200, payload)
 }
 
 func (o *GetDataPoints2OK) GetPayload() *GetDataPoints2OKBody {
@@ -176,6 +179,11 @@ func (o *GetDataPoints2OKBody) contextValidateData(ctx context.Context, formats 
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getDataPoints2OK" + "." + "data" + "." + strconv.Itoa(i))
@@ -358,6 +366,11 @@ func (o *GetDataPoints2OKBodyDataItems0) ContextValidate(ctx context.Context, fo
 func (o *GetDataPoints2OKBodyDataItems0) contextValidatePower(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Power != nil {
+
+		if swag.IsZero(o.Power) { // not required
+			return nil
+		}
+
 		if err := o.Power.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("power")
@@ -374,6 +387,11 @@ func (o *GetDataPoints2OKBodyDataItems0) contextValidatePower(ctx context.Contex
 func (o *GetDataPoints2OKBodyDataItems0) contextValidateToday(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Today != nil {
+
+		if swag.IsZero(o.Today) { // not required
+			return nil
+		}
+
 		if err := o.Today.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("today")
@@ -390,6 +408,11 @@ func (o *GetDataPoints2OKBodyDataItems0) contextValidateToday(ctx context.Contex
 func (o *GetDataPoints2OKBodyDataItems0) contextValidateTotal(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Total != nil {
+
+		if swag.IsZero(o.Total) { // not required
+			return nil
+		}
+
 		if err := o.Total.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("total")
@@ -601,6 +624,11 @@ func (o *GetDataPoints2OKBodyDataItems0Power) ContextValidate(ctx context.Contex
 func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("power" + "." + "battery")
@@ -617,6 +645,11 @@ func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateBattery(ctx context
 func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateConsumption(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Consumption != nil {
+
+		if swag.IsZero(o.Consumption) { // not required
+			return nil
+		}
+
 		if err := o.Consumption.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("power" + "." + "consumption")
@@ -633,6 +666,11 @@ func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateConsumption(ctx con
 func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateGrid(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Grid != nil {
+
+		if swag.IsZero(o.Grid) { // not required
+			return nil
+		}
+
 		if err := o.Grid.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("power" + "." + "grid")
@@ -649,6 +687,11 @@ func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateGrid(ctx context.Co
 func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateInverter(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Inverter != nil {
+
+		if swag.IsZero(o.Inverter) { // not required
+			return nil
+		}
+
 		if err := o.Inverter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("power" + "." + "inverter")
@@ -665,6 +708,11 @@ func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateInverter(ctx contex
 func (o *GetDataPoints2OKBodyDataItems0Power) contextValidateSolar(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Solar != nil {
+
+		if swag.IsZero(o.Solar) { // not required
+			return nil
+		}
+
 		if err := o.Solar.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("power" + "." + "solar")
@@ -962,6 +1010,11 @@ func (o *GetDataPoints2OKBodyDataItems0PowerSolar) contextValidateArrays(ctx con
 	for i := 0; i < len(o.Arrays); i++ {
 
 		if o.Arrays[i] != nil {
+
+			if swag.IsZero(o.Arrays[i]) { // not required
+				return nil
+			}
+
 			if err := o.Arrays[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("power" + "." + "solar" + "." + "arrays" + "." + strconv.Itoa(i))
@@ -1148,6 +1201,11 @@ func (o *GetDataPoints2OKBodyDataItems0Today) ContextValidate(ctx context.Contex
 func (o *GetDataPoints2OKBodyDataItems0Today) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("today" + "." + "battery")
@@ -1164,6 +1222,11 @@ func (o *GetDataPoints2OKBodyDataItems0Today) contextValidateBattery(ctx context
 func (o *GetDataPoints2OKBodyDataItems0Today) contextValidateGrid(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Grid != nil {
+
+		if swag.IsZero(o.Grid) { // not required
+			return nil
+		}
+
 		if err := o.Grid.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("today" + "." + "grid")
@@ -1383,6 +1446,11 @@ func (o *GetDataPoints2OKBodyDataItems0Total) ContextValidate(ctx context.Contex
 func (o *GetDataPoints2OKBodyDataItems0Total) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("total" + "." + "battery")
@@ -1399,6 +1467,11 @@ func (o *GetDataPoints2OKBodyDataItems0Total) contextValidateBattery(ctx context
 func (o *GetDataPoints2OKBodyDataItems0Total) contextValidateGrid(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Grid != nil {
+
+		if swag.IsZero(o.Grid) { // not required
+			return nil
+		}
+
 		if err := o.Grid.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("total" + "." + "grid")

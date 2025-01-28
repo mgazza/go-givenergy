@@ -7,6 +7,7 @@ package e_v_charger
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetDataPointsReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /ev-charger/{charger_uuid}/meter-data] getDataPoints", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetDataPointsOK) Code() int {
 }
 
 func (o *GetDataPointsOK) Error() string {
-	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/meter-data][%d] getDataPointsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/meter-data][%d] getDataPointsOK %s", 200, payload)
 }
 
 func (o *GetDataPointsOK) String() string {
-	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/meter-data][%d] getDataPointsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/meter-data][%d] getDataPointsOK %s", 200, payload)
 }
 
 func (o *GetDataPointsOK) GetPayload() *GetDataPointsOKBody {
@@ -175,6 +178,11 @@ func (o *GetDataPointsOKBody) contextValidateData(ctx context.Context, formats s
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getDataPointsOK" + "." + "data" + "." + strconv.Itoa(i))
@@ -286,6 +294,11 @@ func (o *GetDataPointsOKBodyDataItems0) contextValidateMeasurements(ctx context.
 	for i := 0; i < len(o.Measurements); i++ {
 
 		if o.Measurements[i] != nil {
+
+			if swag.IsZero(o.Measurements[i]) { // not required
+				return nil
+			}
+
 			if err := o.Measurements[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("measurements" + "." + strconv.Itoa(i))

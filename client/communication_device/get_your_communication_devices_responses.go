@@ -7,6 +7,7 @@ package communication_device
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetYourCommunicationDevicesReader) ReadResponse(response runtime.Client
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /communication-device] getYourCommunicationDevices", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetYourCommunicationDevicesOK) Code() int {
 }
 
 func (o *GetYourCommunicationDevicesOK) Error() string {
-	return fmt.Sprintf("[GET /communication-device][%d] getYourCommunicationDevicesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /communication-device][%d] getYourCommunicationDevicesOK %s", 200, payload)
 }
 
 func (o *GetYourCommunicationDevicesOK) String() string {
-	return fmt.Sprintf("[GET /communication-device][%d] getYourCommunicationDevicesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /communication-device][%d] getYourCommunicationDevicesOK %s", 200, payload)
 }
 
 func (o *GetYourCommunicationDevicesOK) GetPayload() *GetYourCommunicationDevicesOKBody {
@@ -175,6 +178,11 @@ func (o *GetYourCommunicationDevicesOKBody) contextValidateData(ctx context.Cont
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getYourCommunicationDevicesOK" + "." + "data" + "." + strconv.Itoa(i))
@@ -280,6 +288,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0) ContextValidate(ctx contex
 func (o *GetYourCommunicationDevicesOKBodyDataItems0) contextValidateInverter(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Inverter != nil {
+
+		if swag.IsZero(o.Inverter) { // not required
+			return nil
+		}
+
 		if err := o.Inverter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter")
@@ -485,6 +498,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0Inverter) ContextValidate(ct
 func (o *GetYourCommunicationDevicesOKBodyDataItems0Inverter) contextValidateConnections(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Connections != nil {
+
+		if swag.IsZero(o.Connections) { // not required
+			return nil
+		}
+
 		if err := o.Connections.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "connections")
@@ -501,6 +519,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0Inverter) contextValidateCon
 func (o *GetYourCommunicationDevicesOKBodyDataItems0Inverter) contextValidateFirmwareVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.FirmwareVersion != nil {
+
+		if swag.IsZero(o.FirmwareVersion) { // not required
+			return nil
+		}
+
 		if err := o.FirmwareVersion.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "firmware_version")
@@ -517,6 +540,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0Inverter) contextValidateFir
 func (o *GetYourCommunicationDevicesOKBodyDataItems0Inverter) contextValidateInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Info != nil {
+
+		if swag.IsZero(o.Info) { // not required
+			return nil
+		}
+
 		if err := o.Info.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "info")
@@ -533,6 +561,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0Inverter) contextValidateInf
 func (o *GetYourCommunicationDevicesOKBodyDataItems0Inverter) contextValidateWarranty(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Warranty != nil {
+
+		if swag.IsZero(o.Warranty) { // not required
+			return nil
+		}
+
 		if err := o.Warranty.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "warranty")
@@ -672,6 +705,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0InverterConnections) context
 	for i := 0; i < len(o.Batteries); i++ {
 
 		if o.Batteries[i] != nil {
+
+			if swag.IsZero(o.Batteries[i]) { // not required
+				return nil
+			}
+
 			if err := o.Batteries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inverter" + "." + "connections" + "." + "batteries" + "." + strconv.Itoa(i))
@@ -692,6 +730,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0InverterConnections) context
 	for i := 0; i < len(o.Meters); i++ {
 
 		if o.Meters[i] != nil {
+
+			if swag.IsZero(o.Meters[i]) { // not required
+				return nil
+			}
+
 			if err := o.Meters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inverter" + "." + "connections" + "." + "meters" + "." + strconv.Itoa(i))
@@ -809,6 +852,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0InverterConnectionsBatteries
 func (o *GetYourCommunicationDevicesOKBodyDataItems0InverterConnectionsBatteriesItems0) contextValidateCapacity(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Capacity != nil {
+
+		if swag.IsZero(o.Capacity) { // not required
+			return nil
+		}
+
 		if err := o.Capacity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("capacity")
@@ -1061,6 +1109,11 @@ func (o *GetYourCommunicationDevicesOKBodyDataItems0InverterInfo) ContextValidat
 func (o *GetYourCommunicationDevicesOKBodyDataItems0InverterInfo) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "info" + "." + "battery")

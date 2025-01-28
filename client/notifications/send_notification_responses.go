@@ -7,6 +7,7 @@ package notifications
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -32,7 +33,7 @@ func (o *SendNotificationReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /notification/send] sendNotification", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *SendNotificationOK) Code() int {
 }
 
 func (o *SendNotificationOK) Error() string {
-	return fmt.Sprintf("[POST /notification/send][%d] sendNotificationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /notification/send][%d] sendNotificationOK %s", 200, payload)
 }
 
 func (o *SendNotificationOK) String() string {
-	return fmt.Sprintf("[POST /notification/send][%d] sendNotificationOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /notification/send][%d] sendNotificationOK %s", 200, payload)
 }
 
 func (o *SendNotificationOK) GetPayload() *SendNotificationOKBody {

@@ -7,6 +7,7 @@ package account
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetAccountDonglesByIDReader) ReadResponse(response runtime.ClientRespon
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /account/{user_username}/devices] getAccountDonglesByID", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetAccountDonglesByIDOK) Code() int {
 }
 
 func (o *GetAccountDonglesByIDOK) Error() string {
-	return fmt.Sprintf("[GET /account/{user_username}/devices][%d] getAccountDonglesByIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account/{user_username}/devices][%d] getAccountDonglesByIdOK %s", 200, payload)
 }
 
 func (o *GetAccountDonglesByIDOK) String() string {
-	return fmt.Sprintf("[GET /account/{user_username}/devices][%d] getAccountDonglesByIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account/{user_username}/devices][%d] getAccountDonglesByIdOK %s", 200, payload)
 }
 
 func (o *GetAccountDonglesByIDOK) GetPayload() *GetAccountDonglesByIDOKBody {
@@ -175,6 +178,11 @@ func (o *GetAccountDonglesByIDOKBody) contextValidateData(ctx context.Context, f
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getAccountDonglesByIdOK" + "." + "data" + "." + strconv.Itoa(i))
@@ -287,6 +295,11 @@ func (o *GetAccountDonglesByIDOKBodyDataItems0) ContextValidate(ctx context.Cont
 func (o *GetAccountDonglesByIDOKBodyDataItems0) contextValidateInverter(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Inverter != nil {
+
+		if swag.IsZero(o.Inverter) { // not required
+			return nil
+		}
+
 		if err := o.Inverter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter")
@@ -492,6 +505,11 @@ func (o *GetAccountDonglesByIDOKBodyDataItems0Inverter) ContextValidate(ctx cont
 func (o *GetAccountDonglesByIDOKBodyDataItems0Inverter) contextValidateConnections(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Connections != nil {
+
+		if swag.IsZero(o.Connections) { // not required
+			return nil
+		}
+
 		if err := o.Connections.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "connections")
@@ -508,6 +526,11 @@ func (o *GetAccountDonglesByIDOKBodyDataItems0Inverter) contextValidateConnectio
 func (o *GetAccountDonglesByIDOKBodyDataItems0Inverter) contextValidateFirmwareVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.FirmwareVersion != nil {
+
+		if swag.IsZero(o.FirmwareVersion) { // not required
+			return nil
+		}
+
 		if err := o.FirmwareVersion.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "firmware_version")
@@ -524,6 +547,11 @@ func (o *GetAccountDonglesByIDOKBodyDataItems0Inverter) contextValidateFirmwareV
 func (o *GetAccountDonglesByIDOKBodyDataItems0Inverter) contextValidateInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Info != nil {
+
+		if swag.IsZero(o.Info) { // not required
+			return nil
+		}
+
 		if err := o.Info.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "info")
@@ -540,6 +568,11 @@ func (o *GetAccountDonglesByIDOKBodyDataItems0Inverter) contextValidateInfo(ctx 
 func (o *GetAccountDonglesByIDOKBodyDataItems0Inverter) contextValidateWarranty(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Warranty != nil {
+
+		if swag.IsZero(o.Warranty) { // not required
+			return nil
+		}
+
 		if err := o.Warranty.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "warranty")
@@ -723,6 +756,11 @@ func (o *GetAccountDonglesByIDOKBodyDataItems0InverterInfo) ContextValidate(ctx 
 func (o *GetAccountDonglesByIDOKBodyDataItems0InverterInfo) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inverter" + "." + "info" + "." + "battery")

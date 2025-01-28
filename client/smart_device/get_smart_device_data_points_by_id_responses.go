@@ -7,6 +7,7 @@ package smart_device
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetSmartDeviceDataPointsByIDReader) ReadResponse(response runtime.Clien
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /smart-device/{smartDevice_uuid}/data] getSmartDeviceDataPointsByID", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetSmartDeviceDataPointsByIDOK) Code() int {
 }
 
 func (o *GetSmartDeviceDataPointsByIDOK) Error() string {
-	return fmt.Sprintf("[GET /smart-device/{smartDevice_uuid}/data][%d] getSmartDeviceDataPointsByIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /smart-device/{smartDevice_uuid}/data][%d] getSmartDeviceDataPointsByIdOK %s", 200, payload)
 }
 
 func (o *GetSmartDeviceDataPointsByIDOK) String() string {
-	return fmt.Sprintf("[GET /smart-device/{smartDevice_uuid}/data][%d] getSmartDeviceDataPointsByIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /smart-device/{smartDevice_uuid}/data][%d] getSmartDeviceDataPointsByIdOK %s", 200, payload)
 }
 
 func (o *GetSmartDeviceDataPointsByIDOK) GetPayload() *GetSmartDeviceDataPointsByIDOKBody {
@@ -175,6 +178,11 @@ func (o *GetSmartDeviceDataPointsByIDOKBody) contextValidateData(ctx context.Con
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getSmartDeviceDataPointsByIdOK" + "." + "data" + "." + strconv.Itoa(i))

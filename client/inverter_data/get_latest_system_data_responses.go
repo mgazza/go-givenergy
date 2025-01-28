@@ -7,6 +7,7 @@ package inverter_data
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetLatestSystemDataReader) ReadResponse(response runtime.ClientResponse
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /inverter/{inverter_serial_number}/system-data/latest] getLatestSystemData", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetLatestSystemDataOK) Code() int {
 }
 
 func (o *GetLatestSystemDataOK) Error() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/system-data/latest][%d] getLatestSystemDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/system-data/latest][%d] getLatestSystemDataOK %s", 200, payload)
 }
 
 func (o *GetLatestSystemDataOK) String() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/system-data/latest][%d] getLatestSystemDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/system-data/latest][%d] getLatestSystemDataOK %s", 200, payload)
 }
 
 func (o *GetLatestSystemDataOK) GetPayload() *GetLatestSystemDataOKBody {
@@ -165,6 +168,11 @@ func (o *GetLatestSystemDataOKBody) ContextValidate(ctx context.Context, formats
 func (o *GetLatestSystemDataOKBody) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Data != nil {
+
+		if swag.IsZero(o.Data) { // not required
+			return nil
+		}
+
 		if err := o.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestSystemDataOK" + "." + "data")
@@ -358,6 +366,11 @@ func (o *GetLatestSystemDataOKBodyData) ContextValidate(ctx context.Context, for
 func (o *GetLatestSystemDataOKBodyData) contextValidateBattery(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Battery != nil {
+
+		if swag.IsZero(o.Battery) { // not required
+			return nil
+		}
+
 		if err := o.Battery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestSystemDataOK" + "." + "data" + "." + "battery")
@@ -374,6 +387,11 @@ func (o *GetLatestSystemDataOKBodyData) contextValidateBattery(ctx context.Conte
 func (o *GetLatestSystemDataOKBodyData) contextValidateGrid(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Grid != nil {
+
+		if swag.IsZero(o.Grid) { // not required
+			return nil
+		}
+
 		if err := o.Grid.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestSystemDataOK" + "." + "data" + "." + "grid")
@@ -390,6 +408,11 @@ func (o *GetLatestSystemDataOKBodyData) contextValidateGrid(ctx context.Context,
 func (o *GetLatestSystemDataOKBodyData) contextValidateInverter(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Inverter != nil {
+
+		if swag.IsZero(o.Inverter) { // not required
+			return nil
+		}
+
 		if err := o.Inverter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestSystemDataOK" + "." + "data" + "." + "inverter")
@@ -406,6 +429,11 @@ func (o *GetLatestSystemDataOKBodyData) contextValidateInverter(ctx context.Cont
 func (o *GetLatestSystemDataOKBodyData) contextValidateSolar(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Solar != nil {
+
+		if swag.IsZero(o.Solar) { // not required
+			return nil
+		}
+
 		if err := o.Solar.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestSystemDataOK" + "." + "data" + "." + "solar")
@@ -664,6 +692,11 @@ func (o *GetLatestSystemDataOKBodyDataSolar) contextValidateArrays(ctx context.C
 	for i := 0; i < len(o.Arrays); i++ {
 
 		if o.Arrays[i] != nil {
+
+			if swag.IsZero(o.Arrays[i]) { // not required
+				return nil
+			}
+
 			if err := o.Arrays[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getLatestSystemDataOK" + "." + "data" + "." + "solar" + "." + "arrays" + "." + strconv.Itoa(i))
