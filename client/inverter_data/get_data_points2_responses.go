@@ -118,6 +118,12 @@ type GetDataPoints2OKBody struct {
 	// data
 	// Example: [{"is_metered":true,"power":{"battery":{"percent":79,"power":-2289,"temperature":12},"consumption":{"power":22636},"grid":{"current":98.1,"frequency":49.25,"power":19821,"voltage":128.3},"inverter":{"eps_power":24672,"output_frequency":49.69,"output_voltage":144.7,"power":-9476,"temperature":50},"solar":{"arrays":[{"array":1,"current":3.3,"power":491,"voltage":198.6},{"array":2,"current":10,"power":2806,"voltage":170.8}],"power":4703}},"status":"LOST","time":"1997-04-14T05:24:20Z","today":{"ac_charge":8021.5,"battery":{"charge":8691.3,"discharge":4350.4},"consumption":5673.7,"grid":{"export":5384.4,"import":3168.4},"solar":4373.9},"total":{"ac_charge":9568.8,"battery":{"charge":1034.1,"discharge":1034.1},"consumption":7757.1,"grid":{"export":7045.8,"import":4625.8},"solar":4353.3}},{"is_metered":true,"power":{"battery":{"percent":46,"power":2048,"temperature":-25.9},"consumption":{"power":46950},"grid":{"current":98.9,"frequency":50.32,"power":11311,"voltage":199.5},"inverter":{"eps_power":64789,"output_frequency":49.01,"output_voltage":144.2,"power":-1516,"temperature":28.7},"solar":{"arrays":[{"array":1,"current":4.2,"power":1656,"voltage":398.9},{"array":2,"current":14.3,"power":3881,"voltage":449.8}],"power":4065}},"status":"WARNING","time":"1971-09-15T21:08:01Z","today":{"ac_charge":6372.2,"battery":{"charge":300.3,"discharge":9962.2},"consumption":5934.1,"grid":{"export":9864.4,"import":5510.6},"solar":1149.4},"total":{"ac_charge":3627.8,"battery":{"charge":3135.4,"discharge":3135.4},"consumption":2605.4,"grid":{"export":7876.6,"import":4190},"solar":4178.8}}]
 	Data []*GetDataPoints2OKBodyDataItems0 `json:"data"`
+
+	// links
+	Links *GetDataPoints2OKBodyLinks `json:"links,omitempty"`
+
+	// meta
+	Meta *GetDataPoints2OKBodyMeta `json:"meta,omitempty"`
 }
 
 // Validate validates this get data points2 o k body
@@ -125,6 +131,14 @@ func (o *GetDataPoints2OKBody) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := o.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateMeta(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -160,11 +174,57 @@ func (o *GetDataPoints2OKBody) validateData(formats strfmt.Registry) error {
 	return nil
 }
 
+func (o *GetDataPoints2OKBody) validateLinks(formats strfmt.Registry) error {
+	if swag.IsZero(o.Links) { // not required
+		return nil
+	}
+
+	if o.Links != nil {
+		if err := o.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("getDataPoints2OK" + "." + "links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("getDataPoints2OK" + "." + "links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (o *GetDataPoints2OKBody) validateMeta(formats strfmt.Registry) error {
+	if swag.IsZero(o.Meta) { // not required
+		return nil
+	}
+
+	if o.Meta != nil {
+		if err := o.Meta.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("getDataPoints2OK" + "." + "meta")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("getDataPoints2OK" + "." + "meta")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this get data points2 o k body based on the context it is used
 func (o *GetDataPoints2OKBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := o.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.contextValidateMeta(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -194,6 +254,48 @@ func (o *GetDataPoints2OKBody) contextValidateData(ctx context.Context, formats 
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (o *GetDataPoints2OKBody) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Links != nil {
+
+		if swag.IsZero(o.Links) { // not required
+			return nil
+		}
+
+		if err := o.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("getDataPoints2OK" + "." + "links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("getDataPoints2OK" + "." + "links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (o *GetDataPoints2OKBody) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.Meta != nil {
+
+		if swag.IsZero(o.Meta) { // not required
+			return nil
+		}
+
+		if err := o.Meta.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("getDataPoints2OK" + "." + "meta")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("getDataPoints2OK" + "." + "meta")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -1582,6 +1684,211 @@ func (o *GetDataPoints2OKBodyDataItems0TotalGrid) MarshalBinary() ([]byte, error
 // UnmarshalBinary interface implementation
 func (o *GetDataPoints2OKBodyDataItems0TotalGrid) UnmarshalBinary(b []byte) error {
 	var res GetDataPoints2OKBodyDataItems0TotalGrid
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*o = res
+	return nil
+}
+
+/*
+GetDataPoints2OKBodyLinks get data points2 o k body links
+swagger:model GetDataPoints2OKBodyLinks
+*/
+type GetDataPoints2OKBodyLinks struct {
+
+	// first
+	// Format: uri
+	First strfmt.URI `json:"first,omitempty"`
+
+	// last
+	// Format: uri
+	Last strfmt.URI `json:"last,omitempty"`
+
+	// next
+	// Format: uri
+	Next strfmt.URI `json:"next,omitempty"`
+
+	// prev
+	// Format: uri
+	Prev strfmt.URI `json:"prev,omitempty"`
+}
+
+// Validate validates this get data points2 o k body links
+func (o *GetDataPoints2OKBodyLinks) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.validateFirst(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateLast(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateNext(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validatePrev(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *GetDataPoints2OKBodyLinks) validateFirst(formats strfmt.Registry) error {
+	if swag.IsZero(o.First) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("getDataPoints2OK"+"."+"links"+"."+"first", "body", "uri", o.First.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (o *GetDataPoints2OKBodyLinks) validateLast(formats strfmt.Registry) error {
+	if swag.IsZero(o.Last) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("getDataPoints2OK"+"."+"links"+"."+"last", "body", "uri", o.Last.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (o *GetDataPoints2OKBodyLinks) validateNext(formats strfmt.Registry) error {
+	if swag.IsZero(o.Next) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("getDataPoints2OK"+"."+"links"+"."+"next", "body", "uri", o.Next.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (o *GetDataPoints2OKBodyLinks) validatePrev(formats strfmt.Registry) error {
+	if swag.IsZero(o.Prev) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("getDataPoints2OK"+"."+"links"+"."+"prev", "body", "uri", o.Prev.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this get data points2 o k body links based on context it is used
+func (o *GetDataPoints2OKBodyLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (o *GetDataPoints2OKBodyLinks) MarshalBinary() ([]byte, error) {
+	if o == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(o)
+}
+
+// UnmarshalBinary interface implementation
+func (o *GetDataPoints2OKBodyLinks) UnmarshalBinary(b []byte) error {
+	var res GetDataPoints2OKBodyLinks
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*o = res
+	return nil
+}
+
+/*
+GetDataPoints2OKBodyMeta get data points2 o k body meta
+swagger:model GetDataPoints2OKBodyMeta
+*/
+type GetDataPoints2OKBodyMeta struct {
+
+	// current page
+	// Example: 1
+	CurrentPage int64 `json:"current_page,omitempty"`
+
+	// from
+	// Example: 1
+	From int64 `json:"from,omitempty"`
+
+	// last page
+	// Example: 2
+	LastPage int64 `json:"last_page,omitempty"`
+
+	// path
+	// Example: https://api.givenergy.cloud/v1/inverter/CH2414G318/data-points/2024-04-09
+	// Format: uri
+	Path strfmt.URI `json:"path,omitempty"`
+
+	// per page
+	// Example: 15
+	PerPage int64 `json:"per_page,omitempty"`
+
+	// to
+	// Example: 15
+	To int64 `json:"to,omitempty"`
+
+	// total
+	// Example: 17
+	Total int64 `json:"total,omitempty"`
+}
+
+// Validate validates this get data points2 o k body meta
+func (o *GetDataPoints2OKBodyMeta) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.validatePath(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *GetDataPoints2OKBodyMeta) validatePath(formats strfmt.Registry) error {
+	if swag.IsZero(o.Path) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("getDataPoints2OK"+"."+"meta"+"."+"path", "body", "uri", o.Path.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validates this get data points2 o k body meta based on context it is used
+func (o *GetDataPoints2OKBodyMeta) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (o *GetDataPoints2OKBodyMeta) MarshalBinary() ([]byte, error) {
+	if o == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(o)
+}
+
+// UnmarshalBinary interface implementation
+func (o *GetDataPoints2OKBodyMeta) UnmarshalBinary(b []byte) error {
+	var res GetDataPoints2OKBodyMeta
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

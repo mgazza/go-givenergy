@@ -2483,6 +2483,46 @@ paths:
                       type: object
                   type: object
                 type: array
+              links:
+                type: object
+                properties:
+                  first:
+                    type: string
+                    format: uri
+                  last:
+                    type: string
+                    format: uri
+                  prev:
+                    type: string
+                    format: uri
+                  next:
+                    type: string
+                    format: uri
+              meta:
+                type: object
+                properties:
+                  current_page:
+                    type: integer
+                    example: 1
+                  from:
+                    type: integer
+                    example: 1
+                  last_page:
+                    type: integer
+                    example: 2
+                  path:
+                    type: string
+                    format: uri
+                    example: "https://api.givenergy.cloud/v1/inverter/CH2414G318/data-points/2024-04-09"
+                  per_page:
+                    type: integer
+                    example: 15
+                  to:
+                    type: integer
+                    example: 15
+                  total:
+                    type: integer
+                    example: 17
             type: object
       tags:
         - Inverter Data
