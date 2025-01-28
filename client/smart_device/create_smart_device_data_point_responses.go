@@ -7,6 +7,7 @@ package smart_device
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -33,7 +34,7 @@ func (o *CreateSmartDeviceDataPointReader) ReadResponse(response runtime.ClientR
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /smart-device/{smartDevice_uuid}/data] createSmartDeviceDataPoint", response, response.Code())
 	}
 }
 
@@ -82,11 +83,13 @@ func (o *CreateSmartDeviceDataPointOK) Code() int {
 }
 
 func (o *CreateSmartDeviceDataPointOK) Error() string {
-	return fmt.Sprintf("[POST /smart-device/{smartDevice_uuid}/data][%d] createSmartDeviceDataPointOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /smart-device/{smartDevice_uuid}/data][%d] createSmartDeviceDataPointOK %s", 200, payload)
 }
 
 func (o *CreateSmartDeviceDataPointOK) String() string {
-	return fmt.Sprintf("[POST /smart-device/{smartDevice_uuid}/data][%d] createSmartDeviceDataPointOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /smart-device/{smartDevice_uuid}/data][%d] createSmartDeviceDataPointOK %s", 200, payload)
 }
 
 func (o *CreateSmartDeviceDataPointOK) GetPayload() *CreateSmartDeviceDataPointOKBody {
@@ -252,6 +255,11 @@ func (o *CreateSmartDeviceDataPointOKBody) contextValidateData(ctx context.Conte
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("createSmartDeviceDataPointOK" + "." + "data" + "." + strconv.Itoa(i))

@@ -7,6 +7,7 @@ package inverter_control
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -31,7 +32,7 @@ func (o *ReadSettingReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /inverter/{inverter_serial_number}/settings/{setting_id}/read] readSetting", response, response.Code())
 	}
 }
 
@@ -80,11 +81,13 @@ func (o *ReadSettingOK) Code() int {
 }
 
 func (o *ReadSettingOK) Error() string {
-	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/settings/{setting_id}/read][%d] readSettingOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/settings/{setting_id}/read][%d] readSettingOK %s", 200, payload)
 }
 
 func (o *ReadSettingOK) String() string {
-	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/settings/{setting_id}/read][%d] readSettingOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/settings/{setting_id}/read][%d] readSettingOK %s", 200, payload)
 }
 
 func (o *ReadSettingOK) GetPayload() *ReadSettingOKBody {
@@ -203,6 +206,11 @@ func (o *ReadSettingOKBody) ContextValidate(ctx context.Context, formats strfmt.
 func (o *ReadSettingOKBody) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Data != nil {
+
+		if swag.IsZero(o.Data) { // not required
+			return nil
+		}
+
 		if err := o.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("readSettingOK" + "." + "data")

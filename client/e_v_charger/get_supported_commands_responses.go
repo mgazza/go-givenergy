@@ -7,6 +7,7 @@ package e_v_charger
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -30,7 +31,7 @@ func (o *GetSupportedCommandsReader) ReadResponse(response runtime.ClientRespons
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /ev-charger/{charger_uuid}/commands] getSupportedCommands", response, response.Code())
 	}
 }
 
@@ -79,11 +80,13 @@ func (o *GetSupportedCommandsOK) Code() int {
 }
 
 func (o *GetSupportedCommandsOK) Error() string {
-	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/commands][%d] getSupportedCommandsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/commands][%d] getSupportedCommandsOK %s", 200, payload)
 }
 
 func (o *GetSupportedCommandsOK) String() string {
-	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/commands][%d] getSupportedCommandsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/commands][%d] getSupportedCommandsOK %s", 200, payload)
 }
 
 func (o *GetSupportedCommandsOK) GetPayload() *GetSupportedCommandsOKBody {

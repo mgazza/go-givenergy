@@ -7,6 +7,7 @@ package e_v_charger
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetChargingSessionsReader) ReadResponse(response runtime.ClientResponse
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /ev-charger/{charger_uuid}/charging-sessions] getChargingSessions", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetChargingSessionsOK) Code() int {
 }
 
 func (o *GetChargingSessionsOK) Error() string {
-	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/charging-sessions][%d] getChargingSessionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/charging-sessions][%d] getChargingSessionsOK %s", 200, payload)
 }
 
 func (o *GetChargingSessionsOK) String() string {
-	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/charging-sessions][%d] getChargingSessionsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /ev-charger/{charger_uuid}/charging-sessions][%d] getChargingSessionsOK %s", 200, payload)
 }
 
 func (o *GetChargingSessionsOK) GetPayload() *GetChargingSessionsOKBody {
@@ -175,6 +178,11 @@ func (o *GetChargingSessionsOKBody) contextValidateData(ctx context.Context, for
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getChargingSessionsOK" + "." + "data" + "." + strconv.Itoa(i))

@@ -7,6 +7,7 @@ package smart_device
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetYourSmartDevicesReader) ReadResponse(response runtime.ClientResponse
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /smart-device] getYourSmartDevices", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetYourSmartDevicesOK) Code() int {
 }
 
 func (o *GetYourSmartDevicesOK) Error() string {
-	return fmt.Sprintf("[GET /smart-device][%d] getYourSmartDevicesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /smart-device][%d] getYourSmartDevicesOK %s", 200, payload)
 }
 
 func (o *GetYourSmartDevicesOK) String() string {
-	return fmt.Sprintf("[GET /smart-device][%d] getYourSmartDevicesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /smart-device][%d] getYourSmartDevicesOK %s", 200, payload)
 }
 
 func (o *GetYourSmartDevicesOK) GetPayload() *GetYourSmartDevicesOKBody {
@@ -175,6 +178,11 @@ func (o *GetYourSmartDevicesOKBody) contextValidateData(ctx context.Context, for
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getYourSmartDevicesOK" + "." + "data" + "." + strconv.Itoa(i))
@@ -276,6 +284,11 @@ func (o *GetYourSmartDevicesOKBodyDataItems0) ContextValidate(ctx context.Contex
 func (o *GetYourSmartDevicesOKBodyDataItems0) contextValidateOtherData(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.OtherData != nil {
+
+		if swag.IsZero(o.OtherData) { // not required
+			return nil
+		}
+
 		if err := o.OtherData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("other_data")

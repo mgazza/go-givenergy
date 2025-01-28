@@ -7,6 +7,7 @@ package e_m_s_data
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetLatestEMSSystemDataReader) ReadResponse(response runtime.ClientRespo
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /ems/{inverter_serial_number}/system-data/latest] getLatestEMSSystemData", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetLatestEMSSystemDataOK) Code() int {
 }
 
 func (o *GetLatestEMSSystemDataOK) Error() string {
-	return fmt.Sprintf("[GET /ems/{inverter_serial_number}/system-data/latest][%d] getLatestEMSSystemDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /ems/{inverter_serial_number}/system-data/latest][%d] getLatestEMSSystemDataOK %s", 200, payload)
 }
 
 func (o *GetLatestEMSSystemDataOK) String() string {
-	return fmt.Sprintf("[GET /ems/{inverter_serial_number}/system-data/latest][%d] getLatestEMSSystemDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /ems/{inverter_serial_number}/system-data/latest][%d] getLatestEMSSystemDataOK %s", 200, payload)
 }
 
 func (o *GetLatestEMSSystemDataOK) GetPayload() *GetLatestEMSSystemDataOKBody {
@@ -165,6 +168,11 @@ func (o *GetLatestEMSSystemDataOKBody) ContextValidate(ctx context.Context, form
 func (o *GetLatestEMSSystemDataOKBody) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Data != nil {
+
+		if swag.IsZero(o.Data) { // not required
+			return nil
+		}
+
 		if err := o.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getLatestEMSSystemDataOK" + "." + "data")
@@ -347,6 +355,11 @@ func (o *GetLatestEMSSystemDataOKBodyData) contextValidateInverters(ctx context.
 	for i := 0; i < len(o.Inverters); i++ {
 
 		if o.Inverters[i] != nil {
+
+			if swag.IsZero(o.Inverters[i]) { // not required
+				return nil
+			}
+
 			if err := o.Inverters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getLatestEMSSystemDataOK" + "." + "data" + "." + "inverters" + "." + strconv.Itoa(i))
@@ -367,6 +380,11 @@ func (o *GetLatestEMSSystemDataOKBodyData) contextValidateMeters(ctx context.Con
 	for i := 0; i < len(o.Meters); i++ {
 
 		if o.Meters[i] != nil {
+
+			if swag.IsZero(o.Meters[i]) { // not required
+				return nil
+			}
+
 			if err := o.Meters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getLatestEMSSystemDataOK" + "." + "data" + "." + "meters" + "." + strconv.Itoa(i))

@@ -7,6 +7,7 @@ package energy_flow_data
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -32,7 +33,7 @@ func (o *GetEnergyFlowDataReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /inverter/{inverter_serial_number}/energy-flows] getEnergyFlowData", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetEnergyFlowDataOK) Code() int {
 }
 
 func (o *GetEnergyFlowDataOK) Error() string {
-	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/energy-flows][%d] getEnergyFlowDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/energy-flows][%d] getEnergyFlowDataOK %s", 200, payload)
 }
 
 func (o *GetEnergyFlowDataOK) String() string {
-	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/energy-flows][%d] getEnergyFlowDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/energy-flows][%d] getEnergyFlowDataOK %s", 200, payload)
 }
 
 func (o *GetEnergyFlowDataOK) GetPayload() string {

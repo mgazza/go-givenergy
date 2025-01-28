@@ -7,6 +7,7 @@ package account
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetAccountChildrenInformationByIDReader) ReadResponse(response runtime.
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /account-children/{user_id}] getAccountChildrenInformationByID", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetAccountChildrenInformationByIDOK) Code() int {
 }
 
 func (o *GetAccountChildrenInformationByIDOK) Error() string {
-	return fmt.Sprintf("[GET /account-children/{user_id}][%d] getAccountChildrenInformationByIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-children/{user_id}][%d] getAccountChildrenInformationByIdOK %s", 200, payload)
 }
 
 func (o *GetAccountChildrenInformationByIDOK) String() string {
-	return fmt.Sprintf("[GET /account-children/{user_id}][%d] getAccountChildrenInformationByIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account-children/{user_id}][%d] getAccountChildrenInformationByIdOK %s", 200, payload)
 }
 
 func (o *GetAccountChildrenInformationByIDOK) GetPayload() *GetAccountChildrenInformationByIDOKBody {
@@ -175,6 +178,11 @@ func (o *GetAccountChildrenInformationByIDOKBody) contextValidateData(ctx contex
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getAccountChildrenInformationByIdOK" + "." + "data" + "." + strconv.Itoa(i))

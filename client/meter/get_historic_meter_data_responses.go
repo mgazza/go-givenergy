@@ -7,6 +7,7 @@ package meter
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -39,7 +40,7 @@ func (o *GetHistoricMeterDataReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /inverter/{inverter_serial_number}/meter/data] getHistoricMeterData", response, response.Code())
 	}
 }
 
@@ -88,11 +89,13 @@ func (o *GetHistoricMeterDataOK) Code() int {
 }
 
 func (o *GetHistoricMeterDataOK) Error() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter/data][%d] getHistoricMeterDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter/data][%d] getHistoricMeterDataOK %s", 200, payload)
 }
 
 func (o *GetHistoricMeterDataOK) String() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter/data][%d] getHistoricMeterDataOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter/data][%d] getHistoricMeterDataOK %s", 200, payload)
 }
 
 func (o *GetHistoricMeterDataOK) GetPayload() *GetHistoricMeterDataOKBody {
@@ -156,11 +159,13 @@ func (o *GetHistoricMeterDataNotFound) Code() int {
 }
 
 func (o *GetHistoricMeterDataNotFound) Error() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter/data][%d] getHistoricMeterDataNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter/data][%d] getHistoricMeterDataNotFound %s", 404, payload)
 }
 
 func (o *GetHistoricMeterDataNotFound) String() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter/data][%d] getHistoricMeterDataNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/meter/data][%d] getHistoricMeterDataNotFound %s", 404, payload)
 }
 
 func (o *GetHistoricMeterDataNotFound) GetPayload() *GetHistoricMeterDataNotFoundBody {
@@ -384,6 +389,11 @@ func (o *GetHistoricMeterDataOKBody) contextValidateData(ctx context.Context, fo
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getHistoricMeterDataOK" + "." + "data" + "." + strconv.Itoa(i))

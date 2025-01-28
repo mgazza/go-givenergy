@@ -7,6 +7,7 @@ package site
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetYourSitesReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /site] getYourSites", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetYourSitesOK) Code() int {
 }
 
 func (o *GetYourSitesOK) Error() string {
-	return fmt.Sprintf("[GET /site][%d] getYourSitesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /site][%d] getYourSitesOK %s", 200, payload)
 }
 
 func (o *GetYourSitesOK) String() string {
-	return fmt.Sprintf("[GET /site][%d] getYourSitesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /site][%d] getYourSitesOK %s", 200, payload)
 }
 
 func (o *GetYourSitesOK) GetPayload() *GetYourSitesOKBody {
@@ -175,6 +178,11 @@ func (o *GetYourSitesOKBody) contextValidateData(ctx context.Context, formats st
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getYourSitesOK" + "." + "data" + "." + strconv.Itoa(i))

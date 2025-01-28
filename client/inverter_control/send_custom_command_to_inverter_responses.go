@@ -7,6 +7,7 @@ package inverter_control
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -32,7 +33,7 @@ func (o *SendCustomCommandToInverterReader) ReadResponse(response runtime.Client
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /inverter/{inverter_serial_number}/debug/transparent/send] sendCustomCommandToInverter", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *SendCustomCommandToInverterOK) Code() int {
 }
 
 func (o *SendCustomCommandToInverterOK) Error() string {
-	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/debug/transparent/send][%d] sendCustomCommandToInverterOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/debug/transparent/send][%d] sendCustomCommandToInverterOK %s", 200, payload)
 }
 
 func (o *SendCustomCommandToInverterOK) String() string {
-	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/debug/transparent/send][%d] sendCustomCommandToInverterOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /inverter/{inverter_serial_number}/debug/transparent/send][%d] sendCustomCommandToInverterOK %s", 200, payload)
 }
 
 func (o *SendCustomCommandToInverterOK) GetPayload() *SendCustomCommandToInverterOKBody {

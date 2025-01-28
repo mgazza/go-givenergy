@@ -7,6 +7,7 @@ package account
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -31,7 +32,7 @@ func (o *GetAccountInformationByIDReader) ReadResponse(response runtime.ClientRe
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /account/{user_id}] getAccountInformationByID", response, response.Code())
 	}
 }
 
@@ -80,11 +81,13 @@ func (o *GetAccountInformationByIDOK) Code() int {
 }
 
 func (o *GetAccountInformationByIDOK) Error() string {
-	return fmt.Sprintf("[GET /account/{user_id}][%d] getAccountInformationByIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account/{user_id}][%d] getAccountInformationByIdOK %s", 200, payload)
 }
 
 func (o *GetAccountInformationByIDOK) String() string {
-	return fmt.Sprintf("[GET /account/{user_id}][%d] getAccountInformationByIdOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /account/{user_id}][%d] getAccountInformationByIdOK %s", 200, payload)
 }
 
 func (o *GetAccountInformationByIDOK) GetPayload() *GetAccountInformationByIDOKBody {
@@ -164,6 +167,11 @@ func (o *GetAccountInformationByIDOKBody) ContextValidate(ctx context.Context, f
 func (o *GetAccountInformationByIDOKBody) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.Data != nil {
+
+		if swag.IsZero(o.Data) { // not required
+			return nil
+		}
+
 		if err := o.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("getAccountInformationByIdOK" + "." + "data")

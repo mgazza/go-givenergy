@@ -7,6 +7,7 @@ package inverter_control
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"strconv"
@@ -32,7 +33,7 @@ func (o *GetSettingsListReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /inverter/{inverter_serial_number}/settings] getSettingsList", response, response.Code())
 	}
 }
 
@@ -81,11 +82,13 @@ func (o *GetSettingsListOK) Code() int {
 }
 
 func (o *GetSettingsListOK) Error() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/settings][%d] getSettingsListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/settings][%d] getSettingsListOK %s", 200, payload)
 }
 
 func (o *GetSettingsListOK) String() string {
-	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/settings][%d] getSettingsListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /inverter/{inverter_serial_number}/settings][%d] getSettingsListOK %s", 200, payload)
 }
 
 func (o *GetSettingsListOK) GetPayload() *GetSettingsListOKBody {
@@ -175,6 +178,11 @@ func (o *GetSettingsListOKBody) contextValidateData(ctx context.Context, formats
 	for i := 0; i < len(o.Data); i++ {
 
 		if o.Data[i] != nil {
+
+			if swag.IsZero(o.Data[i]) { // not required
+				return nil
+			}
+
 			if err := o.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("getSettingsListOK" + "." + "data" + "." + strconv.Itoa(i))
